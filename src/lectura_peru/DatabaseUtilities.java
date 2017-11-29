@@ -130,18 +130,16 @@ public class DatabaseUtilities {
             {
                 for(int a = 0; a < columns.size(); a++)
                 {
-                    switch(a)
-                    {
-                        case 0: columnParameters += columns.get(a) + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"; break;
-                        case 1: columnParameters += " " + columns.get(a) + " TEXT NOT NULL,"; break;
-                        case 2: columnParameters += " " + columns.get(a) + " TEXT NOT NULL,"; break;
-                        case 3: columnParameters += " " + columns.get(a) + " REAL NOT NULL,"; break;
-                        default: columnParameters += " TEXT NOT NULL,"; break; 
+                    if(a==0){
+                        columnParameters += columns.get(a) + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,";
+                    }else{
+                        columnParameters += columns.get(a) + " TEXT NOT NULL,";
                     }
                 }
                 columnParameters = columnParameters.substring(0, columnParameters.lastIndexOf(","));
             }
         }
+        //System.out.println(columnParameters);
         return columnParameters;
     }
     
