@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import org.sqlite.util.StringUtils;
 
 /**
  *
@@ -25,13 +26,14 @@ public class Lectura_Peru {
     public Partidas_Abiertas pa;
     private static DatabaseUtilities db = new DatabaseUtilities();
     private static String db_name="db_prueba";
+    private static String tb_name="partidas_abiertas";
     private static String url;
     private static Map<Integer,String> columnas=new TreeMap<Integer, String>();
     private static Connection connection;
     
     private void lectura_fichero() {
         try {
-            FileReader file = new FileReader("Aging101000031102017.txt");
+            FileReader file = new FileReader("Aging101000031102017.XLS");
             BufferedReader buf = new BufferedReader(file);
             String encabezado="";
             String cad="";
@@ -60,45 +62,41 @@ public class Lectura_Peru {
             System.out.println(buf.readLine());
             //21 primera fila con valores
             int cant=21;
-            int fallo=21;
             
             url=db.createNewDatabase(db_name);
             add_campos();
             columnas.get(0);
-            db.createTable(url, db_name, columnas);
+            db.createTable(url, tb_name, columnas);
             
             //stream.forEach((s)->System.out.println(s));
-            int contador = 1; 
-            ArrayList<String[]> lista = new ArrayList<String[]>();
+            int contador = 11; 
+            //ArrayList<String[]> lista = new ArrayList<String[]>();
             while((cad=buf.readLine())!=null){ 
                 if(cad.split("\t").length == 45)
                 {
                     if(cant%2!=0){
                          arr = cad.split("\t");
-                         lista.add(arr);
+                         //lista.add(arr);
                         if(arr.length == 45)
-                        {
+                        {     
+                            System.out.println(arr[38]+"   "+convert(arr[38]));
                              pa = new Partidas_Abiertas(arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], arr[10], arr[11],
                                     arr[12], arr[13], arr[14], arr[15], arr[16], arr[17], arr[18], arr[19], arr[20], arr[21], arr[22], arr[23],
-                                    arr[24], arr[25], arr[26], arr[27], arr[28], arr[29], arr[30], arr[31], arr[32], arr[33], arr[34], arr[35],
-                                    arr[36], arr[37], arr[38], arr[39], arr[40], arr[41], arr[42], arr[43], arr[44]);
+                                    arr[24], arr[25], arr[26], arr[27], arr[28],
+                                     convert(arr[29]), 
+                                     convert(arr[30]), 
+                                     convert(arr[31]), 
+                                     convert(arr[32]), 
+                                     convert(arr[33]), 
+                                     convert(arr[34]), 
+                                     convert(arr[35]), 
+                                     convert(arr[36]), 
+                                     convert(arr[37]), 
+                                     convert(arr[38]),
+                                     arr[39], arr[40], arr[41], arr[42], arr[43], arr[44]);
                             list_pa.add(pa);
-//                            lista.add(arr);
-        //                    pa = null;
-        //                    contador++;
-                        }
-                        else 
-                        {
-        //                        System.out.println("Menor:" + arr.length);
-        //                        System.out.println(arr.length);
-        //                        System.out.println(arr.length);
-        //                        contador++;
-        //                        System.out.println(arr[1]);
-                            break;
 
                         }
-                         System.out.println(arr[3]);
-                        //System.out.println(cant+" "+arr.length+"  "+cad);
                     }
                     cant++;
                 }
@@ -119,6 +117,16 @@ public class Lectura_Peru {
             //System.out.println("Error al intentar abrir el fichero");
             e.printStackTrace();
         }
+    }
+    
+    private static double convert(String cad){
+        double res=0;
+        if(cad.indexOf("-") != -1){
+            res = Double.parseDouble(cad.replaceAll("\\W", "")) * -1 / 100;
+        }else{
+            res = Double.parseDouble(cad.replaceAll("\\W", "")) / 100;
+        }
+        return res;
     }
     
     private static Map<Integer,String> add_campos(){

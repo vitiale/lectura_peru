@@ -38,16 +38,16 @@ public class Partidas_Abiertas {
     private String Fecha_Vencimiento;
     private String Condicion_Pago;
     private String Codigo_Sucursal;
-    private String Saldo_0_0_días;
-    private String Saldo_1_15_días;
-    private String Saldo_16_21_días;
-    private String Saldo_22_30_días;
-    private String Saldo_31_60_días;
-    private String Saldo_61_90_días;
-    private String Saldo_91_120_días;
-    private String Saldo_121_180_días;
-    private String Saldo_mayor_180_días;
-    private String Saldo;
+    private double Saldo_0_0_días;
+    private double Saldo_1_15_días;
+    private double Saldo_16_21_días;
+    private double Saldo_22_30_días;
+    private double Saldo_31_60_días;
+    private double Saldo_61_90_días;
+    private double Saldo_91_120_días;
+    private double Saldo_121_180_días;
+    private double Saldo_mayor_180_días;
+    private double Saldo;
     private String Ruta;
     private String Clasificacion_Cliente;
     private String Codigo_Industria_1;
@@ -55,7 +55,7 @@ public class Partidas_Abiertas {
     private String Descripción_Of_Vtas;
     private String Grupo_Vendedores;
 
-    public Partidas_Abiertas(String Sociedad, String Numero_Cliente, String Nombre_Cliente, String Num_Ident_Fiscal, String Responsable, String Texto_Responsable, String Canal_Ventas, String Descripcion_Canal, String Indicador_CME, String Num_Documento_Compensacion, String Fecha_Compens, String Nombre_Sucursal, String Clase_Documento, String Numero_Documento, String Ejercicio, String Referencia, String Fe_Contable, String Fecha_Documento, String Fecha_Base, String Descripcion_Cond_Pago, String Origen_diferencias, String Indicador_Debe_Haber, String Referencia_Factura, String Ejercicio_Referencia, String Fecha_Vencimiento, String Condicion_Pago, String Codigo_Sucursal, String Saldo_0_0_días, String Saldo_1_15_días, String Saldo_16_21_días, String Saldo_22_30_días, String Saldo_31_60_días, String Saldo_61_90_días, String Saldo_91_120_días, String Saldo_121_180_días, String Saldo_mayor_180_días, String Saldo, String Ruta, String Clasificacion_Cliente, String Codigo_Industria_1, String Oficina_Ventas, String Descripción_Of_Vtas, String Grupo_Vendedores) {
+    public Partidas_Abiertas(String Sociedad, String Numero_Cliente, String Nombre_Cliente, String Num_Ident_Fiscal, String Responsable, String Texto_Responsable, String Canal_Ventas, String Descripcion_Canal, String Indicador_CME, String Num_Documento_Compensacion, String Fecha_Compens, String Nombre_Sucursal, String Clase_Documento, String Numero_Documento, String Ejercicio, String Referencia, String Fe_Contable, String Fecha_Documento, String Fecha_Base, String Descripcion_Cond_Pago, String Origen_diferencias, String Indicador_Debe_Haber, String Referencia_Factura, String Ejercicio_Referencia, String Fecha_Vencimiento, String Condicion_Pago, String Codigo_Sucursal, double Saldo_0_0_días, double Saldo_1_15_días, double Saldo_16_21_días, double Saldo_22_30_días, double Saldo_31_60_días, double Saldo_61_90_días, double Saldo_91_120_días, double Saldo_121_180_días, double Saldo_mayor_180_días, double Saldo, String Ruta, String Clasificacion_Cliente, String Codigo_Industria_1, String Oficina_Ventas, String Descripción_Of_Vtas, String Grupo_Vendedores) {
         this.Sociedad = Sociedad;
         this.Numero_Cliente = Numero_Cliente;
         this.Nombre_Cliente = Nombre_Cliente;
@@ -317,83 +317,83 @@ public class Partidas_Abiertas {
         this.Codigo_Sucursal = Codigo_Sucursal;
     }
 
-    public String getSaldo_0_0_días() {
+    public double getSaldo_0_0_días() {
         return Saldo_0_0_días;
     }
 
-    public void setSaldo_0_0_días(String Saldo_0_0_días) {
+    public void setSaldo_0_0_días(double Saldo_0_0_días) {
         this.Saldo_0_0_días = Saldo_0_0_días;
     }
 
-    public String getSaldo_1_15_días() {
+    public double getSaldo_1_15_días() {
         return Saldo_1_15_días;
     }
 
-    public void setSaldo_1_15_días(String Saldo_1_15_días) {
+    public void setSaldo_1_15_días(double Saldo_1_15_días) {
         this.Saldo_1_15_días = Saldo_1_15_días;
     }
 
-    public String getSaldo_16_21_días() {
+    public double getSaldo_16_21_días() {
         return Saldo_16_21_días;
     }
 
-    public void setSaldo_16_21_días(String Saldo_16_21_días) {
+    public void setSaldo_16_21_días(double Saldo_16_21_días) {
         this.Saldo_16_21_días = Saldo_16_21_días;
     }
 
-    public String getSaldo_22_30_días() {
+    public double getSaldo_22_30_días() {
         return Saldo_22_30_días;
     }
 
-    public void setSaldo_22_30_días(String Saldo_22_30_días) {
+    public void setSaldo_22_30_días(double Saldo_22_30_días) {
         this.Saldo_22_30_días = Saldo_22_30_días;
     }
 
-    public String getSaldo_31_60_días() {
+    public double getSaldo_31_60_días() {
         return Saldo_31_60_días;
     }
 
-    public void setSaldo_31_60_días(String Saldo_31_60_días) {
+    public void setSaldo_31_60_días(double Saldo_31_60_días) {
         this.Saldo_31_60_días = Saldo_31_60_días;
     }
 
-    public String getSaldo_61_90_días() {
+    public double getSaldo_61_90_días() {
         return Saldo_61_90_días;
     }
 
-    public void setSaldo_61_90_días(String Saldo_61_90_días) {
+    public void setSaldo_61_90_días(double Saldo_61_90_días) {
         this.Saldo_61_90_días = Saldo_61_90_días;
     }
 
-    public String getSaldo_91_120_días() {
+    public double getSaldo_91_120_días() {
         return Saldo_91_120_días;
     }
 
-    public void setSaldo_91_120_días(String Saldo_91_120_días) {
+    public void setSaldo_91_120_días(double Saldo_91_120_días) {
         this.Saldo_91_120_días = Saldo_91_120_días;
     }
 
-    public String getSaldo_121_180_días() {
+    public double getSaldo_121_180_días() {
         return Saldo_121_180_días;
     }
 
-    public void setSaldo_121_180_días(String Saldo_121_180_días) {
+    public void setSaldo_121_180_días(double Saldo_121_180_días) {
         this.Saldo_121_180_días = Saldo_121_180_días;
     }
 
-    public String getSaldo_mayor_180_días() {
+    public double getSaldo_mayor_180_días() {
         return Saldo_mayor_180_días;
     }
 
-    public void setSaldo_mayor_180_días(String Saldo_mayor_180_días) {
+    public void setSaldo_mayor_180_días(double Saldo_mayor_180_días) {
         this.Saldo_mayor_180_días = Saldo_mayor_180_días;
     }
 
-    public String getSaldo() {
+    public double getSaldo() {
         return Saldo;
     }
 
-    public void setSaldo(String Saldo) {
+    public void setSaldo(double Saldo) {
         this.Saldo = Saldo;
     }
 
