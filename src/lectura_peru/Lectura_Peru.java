@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -175,19 +176,20 @@ public class Lectura_Peru {
         return columnas;
     }
     
-    private void poblar_excel(){
-        db.sin_duplicar(url, tb_name, columnas);
-        ArrayList<Partidas_Abiertas> list_pa1=new ArrayList<Partidas_Abiertas>();
-        
+    private void poblar_excel() throws SQLException{
+        ArrayList<Partidas_Abiertas> list_pa1=db.sin_duplicar(url, tb_name, columnas);
+        System.out.println(list_pa1.size());
+        //System.out.println(list_pa1.get(0).getNumero_Cliente());
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         Lectura_Peru per=new Lectura_Peru();
-                per.lectura_fichero();
+        per.lectura_fichero();
+        per.poblar_excel();
 
     }
 
