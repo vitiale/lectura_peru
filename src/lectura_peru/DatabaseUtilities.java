@@ -90,17 +90,8 @@ public class DatabaseUtilities {
             createTableQuery.append(tableName);
             createTableQuery.append(" (");
             String fields = getTableColumnInformation(tableName, columns);
-            /*String fields = headers.values().stream()
-                    .map(s -> {
-                        switch(s) {
-                            case "id": return s + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT";
-                            case "numero_folio":
-                            case "nombre":
-                                return s + " TEXT NOT NULL";
-                            default:
-                                return s + " TEXT NOT NULL";
-                        }
-                    }).collect(Collectors.joining(","));*/
+            
+            
             createTableQuery.append(fields);
             createTableQuery.append(")");
             statement.executeUpdate(createTableQuery.toString());
@@ -139,11 +130,11 @@ public class DatabaseUtilities {
             {
                 for(int a = 0; a < columns.size(); a++)
                 {
-                    if(a==0){
-                        columnParameters += columns.get(a) + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,";
-                    }else{
+//                    if(a==0){
+//                        columnParameters += columns.get(a) + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,";
+//                    }else{
                         columnParameters += columns.get(a) + " TEXT NOT NULL,";
-                    }
+//                    }
                 }
                 columnParameters = columnParameters.substring(0, columnParameters.lastIndexOf(","));
             }
@@ -164,15 +155,13 @@ public class DatabaseUtilities {
                 for(int a = 0; a < columns.size(); a++)
                 {
                     if (a == columns.size() - 1) {
-                        partidasInformation += "?";
-                    } else if(a==0){
-                        partidasInformation += "NULL,";
+                        partidasInformation += "?";                    
                     }else{
                         partidasInformation += "?,";
                     }                  
                 }
             }
-        }
+        }System.out.println("columns "+columns.size());
         System.out.println(partidasInformation);
         return partidasInformation;
     }
@@ -204,23 +193,79 @@ public class DatabaseUtilities {
             sqlQuery.append(")"); 
             sqlQuery.append(" VALUES");
             sqlQuery.append(" (");
-            System.out.println(sqlQuery);
             partidas_abiertasInformation = partidas_abiertasInformation(columns);
             sqlQuery.append(partidas_abiertasInformation);
             sqlQuery.append(");");
+            System.out.println(sqlQuery);
             prepareStatement = connection.prepareStatement(sqlQuery.toString());
-            
+            int p=0;
             for(Partidas_Abiertas partidas: lista_pa)
-            {                
+            {    
+                System.out.println(lista_pa.size());
+//                System.out.println(p+"  "+partidas.getSociedad());
+//                System.out.println(p+"  "+partidas.getNumero_Cliente());
+//                System.out.println(p+"  "+partidas.getNombre_Cliente());
+//                System.out.println(p+"  "+partidas.getNum_Ident_Fiscal());
+//                System.out.println(p+"  "+partidas.getResponsable());
+//                System.out.println(p+"  "+partidas.getTexto_Responsable());
+//                System.out.println(p+"  "+partidas.getCanal_Ventas());
+//                System.out.println(p+"  "+partidas.getDescripcion_Canal());
+//                System.out.println(p+"  "+partidas.getIndicador_CME());
+//                System.out.println(p+"  "+partidas.getNum_Documento_Compensacion());
+//                System.out.println(p+"  "+partidas.getFecha_Compens());
+//                System.out.println(p+"  "+partidas.getNombre_Sucursal());
+//                System.out.println(p+"  "+partidas.getClase_Documento());
+//                System.out.println(p+"  "+partidas.getNumero_Documento());
+//                System.out.println(p+"  "+partidas.getEjercicio());
+//                System.out.println(p+"  "+partidas.getFe_Contable());
+//                System.out.println(p+"  "+partidas.getFecha_Documento());
+//                System.out.println(p+"  "+partidas.getFecha_Base());
+//                System.out.println(p+"  "+partidas.getDescripcion_Cond_Pago());
+//                System.out.println(p+"  "+partidas.getOrigen_diferencias());
+//                System.out.println(p+"  "+partidas.getIndicador_Debe_Haber());
+//                System.out.println(p+"  "+partidas.getReferencia_Factura());
+//                System.out.println(p+"  "+partidas.getEjercicio_Referencia());
+//                System.out.println(p+"  "+partidas.getFecha_Vencimiento());
+//                System.out.println(p+"  "+partidas.getCondicion_Pago());
+//                System.out.println(p+"  "+partidas.getCodigo_Sucursal());
+//                System.out.println(p+"  "+partidas.getSaldo_0_0_días());
+//                System.out.println(p+"  "+partidas.getSaldo_1_15_días());
+//                System.out.println(p+"  "+partidas.getSaldo_16_21_días());
+//                System.out.println(p+"  "+partidas.getSaldo_22_30_días());
+//                System.out.println(p+"  "+partidas.getSaldo_31_60_días());
+//                System.out.println(p+"  "+partidas.getSaldo_61_90_días());
+//                System.out.println(p+"  "+partidas.getSaldo_91_120_días());
+//                System.out.println(p+"  "+partidas.getSaldo_121_180_días());
+//                System.out.println(p+"  "+partidas.getSaldo_mayor_180_días());
+//                System.out.println(p+"  "+partidas.getSaldo());
+//                System.out.println(p+"  "+partidas.getRuta());
+//                System.out.println(p+"  "+partidas.getClasificacion_Cliente());
+//                System.out.println(p+"  "+partidas.getCodigo_Industria_1());
+//                System.out.println(p+"  "+partidas.getOficina_Ventas());
+//                System.out.println(p+"  "+partidas.getDescripción_Of_Vtas());
+//                System.out.println(p+"  "+partidas.getGrupo_Vendedores());        
+//                p++;
+//                
+                
+                System.out.println("dentro");
                 prepareStatement.setString(1, partidas.getSociedad());
+                System.out.println("0");
                 prepareStatement.setString(2, partidas.getNumero_Cliente());
+                System.out.println("1");
                 prepareStatement.setString(3, partidas.getNombre_Cliente());
+                System.out.println("2");
                 prepareStatement.setString(4, partidas.getNum_Ident_Fiscal());
+                System.out.println("3");
                 prepareStatement.setString(5, partidas.getResponsable());
+                System.out.println("4");
                 prepareStatement.setString(6, partidas.getTexto_Responsable());
+                System.out.println("5");
                 prepareStatement.setString(7, partidas.getCanal_Ventas());
+                System.out.println("6");
                 prepareStatement.setString(8, partidas.getDescripcion_Canal());
+                System.out.println("7");
                 prepareStatement.setString(9, partidas.getIndicador_CME());
+                System.out.println("8");
                 prepareStatement.setString(10, partidas.getNum_Documento_Compensacion());
                 prepareStatement.setString(11, partidas.getFecha_Compens());
                 prepareStatement.setString(12, partidas.getNombre_Sucursal());
