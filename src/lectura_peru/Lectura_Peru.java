@@ -33,7 +33,8 @@ public class Lectura_Peru {
     
     private void lectura_fichero() {
         try {
-            FileReader file = new FileReader("Aging101000031102017.XLS");
+//            FileReader file = new FileReader("Aging101000031102017.XLS");
+            FileReader file = new FileReader("Aging101000031102017_Ecuador.XLS");
             BufferedReader buf = new BufferedReader(file);
             String encabezado="";
             String cad="";
@@ -65,7 +66,7 @@ public class Lectura_Peru {
             
             url=db.createNewDatabase(db_name);
             add_campos();
-            columnas.get(0);
+            //columnas.get(0);
             db.createTable(url, tb_name, columnas);
             
             //stream.forEach((s)->System.out.println(s));
@@ -79,7 +80,7 @@ public class Lectura_Peru {
                          //lista.add(arr);
                         if(arr.length == 45)
                         {     
-                            System.out.println(arr[38]+"   "+convert(arr[38]));
+                            //System.out.println(arr[38]+"   "+convert(arr[38]));
                              pa = new Partidas_Abiertas(arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], arr[10], arr[11],
                                     arr[12], arr[13], arr[14], arr[15], arr[16], arr[17], arr[18], arr[19], arr[20], arr[21], arr[22], arr[23],
                                     arr[24], arr[25], arr[26], arr[27], arr[28],
@@ -95,13 +96,12 @@ public class Lectura_Peru {
                                      convert(arr[38]),
                                      arr[39], arr[40], arr[41], arr[42], arr[43], arr[44]);
                             list_pa.add(pa);
-
                         }
                     }
                     cant++;
                 }
             }
-            
+            db.insertIntoPartidas(url, tb_name, columnas, list_pa);
 //            for(int a = 0; a < lista.size(); a++)
 //            {
 //                //System.out.println(a);

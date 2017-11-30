@@ -157,43 +157,17 @@ public class DatabaseUtilities {
             {
                 for(int a = 0; a < columns.size(); a++)
                 {
-                    switch(a)
-                    {
-                        /*case 0: partidas_abiertasInformation += "NULL,"; break;
-                        case 1: partidas_abiertasInformation += "" + reception.getIdFolio() + ","; break;
-                        case 2: partidas_abiertasInformation += "'" + reception.getMtvo() + "',"; break;
-                        case 3: partidas_abiertasInformation += "'" + reception.getTienda() + "',"; break;
-                        case 4: partidas_abiertasInformation += "'" + reception.getRecibo() + "',"; break;
-                        case 5: partidas_abiertasInformation +=  "'" + reception.getOrden() + "',"; break;
-                        case 6: partidas_abiertasInformation += "'" + reception.getAdicional() + "',"; break;
-                        case 7: partidas_abiertasInformation += "'" + reception.getRemision() + "',"; break;
-                        case 8: partidas_abiertasInformation += "'" + reception.getFecha() + "',"; break;
-                        case 9: partidas_abiertasInformation += reception.getValor() + ","; break;
-                        case 10: partidas_abiertasInformation += reception.getIva() + ","; break;
-                        case 11: partidas_abiertasInformation += reception.getNeto(); break;
-                        default: partidas_abiertasInformation += ""; break;*/
-                        case 0: partidasInformation += "NULL,"; break;
-                        case 1: partidasInformation += "?,"; break;
-                        case 2: partidasInformation += "?,"; break;
-                        case 3: partidasInformation += "?,"; break;
-                        case 4: partidasInformation += "?,"; break;
-                        case 5: partidasInformation += "?,"; break;
-                        case 6: partidasInformation += "?,"; break;
-                        case 7: partidasInformation += "?,"; break;
-                        case 8: partidasInformation += "?,"; break;
-                        case 9: partidasInformation += "?,"; break;
-                        case 10: partidasInformation += "?,"; break;
-                        case 11: partidasInformation += "?"; break;
-                        default: partidasInformation += "?"; break;     
-                    }
-                    if(a==0){
+                    if (a == columns.size() - 1) {
+                        partidasInformation += "?";
+                    } else if(a==0){
                         partidasInformation += "NULL,";
                     }else{
-                        partidasInformation += "?";
+                        partidasInformation += "?,";
                     }                  
                 }
             }
         }
+        System.out.println(partidasInformation);
         return partidasInformation;
     }
     
@@ -224,13 +198,14 @@ public class DatabaseUtilities {
             sqlQuery.append(")"); 
             sqlQuery.append(" VALUES");
             sqlQuery.append(" (");
+            System.out.println(sqlQuery);
             partidas_abiertasInformation = partidas_abiertasInformation(columns);
             sqlQuery.append(partidas_abiertasInformation);
             sqlQuery.append(");");
             prepareStatement = connection.prepareStatement(sqlQuery.toString());
             
             for(Partidas_Abiertas partidas: lista_pa)
-            {
+            {                
                 prepareStatement.setString(1, partidas.getSociedad());
                 prepareStatement.setString(2, partidas.getNumero_Cliente());
                 prepareStatement.setString(3, partidas.getNombre_Cliente());
