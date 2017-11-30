@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -149,8 +150,7 @@ public class DatabaseUtilities {
         }
         //System.out.println(columnParameters);
         return columnParameters;
-    }
-    
+    }    
     
     
     public static String partidas_abiertasInformation(Map<Integer, String> columns)
@@ -178,7 +178,7 @@ public class DatabaseUtilities {
     }
     
     
-        public static void insertIntoPartidas(String url, String tableName, Map<Integer, String> columns, ArrayList<Partidas_Abiertas> lista_pa)
+    public static void insertIntoPartidas(String url, String tableName, Map<Integer, String> columns, ArrayList<Partidas_Abiertas> lista_pa)
     {
         try
         {
@@ -278,5 +278,33 @@ public class DatabaseUtilities {
             e.printStackTrace(pw);
         }
     }
-    
+        
+        
+    public static ArrayList<Partidas_Abiertas> sin_duplicar(String url, String tableName, Map<Integer, String> columns) throws SQLException{
+        Connection connection=null;
+        ArrayList<Partidas_Abiertas>lista=new ArrayList<>();
+        //Partidas_Abiertas pa;
+        //StringBuilder sql=new StringBuilder("SELECT ");
+        String sql="SELECT ";
+        String col="";
+        for(int i=0; i<columns.size(); i++){
+            if(i==columns.size()-1)
+                col+=columns.get(i);
+            else
+                col+=(columns.get(i)+",");
+        }
+        connection = connectDatabase(url);
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql + col + " FROM " + tableName + " GROUP BY " + col + " ORDER BY Numero_Cliente");
+        
+        while(rs.next()){
+            lista.add(new Partidas_Abiertas(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13),
+                    rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
+                    rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27),
+                    rs.getInt(28), rs.getInt(29), rs.getInt(30), rs.getInt(31), rs.getInt(32), rs.getInt(33), rs.getInt(34), rs.getInt(35), rs.getInt(36), rs.getInt(0),
+                    rs.getString(37), rs.getString(38), rs.getString(39), rs.getString(40), rs.getString(41), rs.getString(42)));
+        }
+        return lista;
+    }
 }

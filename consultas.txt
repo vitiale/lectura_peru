@@ -1,6 +1,8 @@
 1-quitar duplicados:
 
-select Auto_incr, Sociedad, Numero_Cliente, Nombre_Cliente, Num_Ident_Fiscal, Responsable, Texto_Responsable, Canal_Ventas, Descripcion_Canal, Indicador_CME, Num_Documento_Compensacion, Fecha_Compens, Nombre_Sucursal,Clase_Documento,Numero_Documento,Ejercicio,
+select 
+
+Auto_incr, Sociedad, Numero_Cliente, Nombre_Cliente, Num_Ident_Fiscal, Responsable, Texto_Responsable, Canal_Ventas, Descripcion_Canal, Indicador_CME, Num_Documento_Compensacion, Fecha_Compens, Nombre_Sucursal,Clase_Documento,Numero_Documento,Ejercicio,
 Referencia,Fe_Contable,Fecha_Documento,Fecha_Base,Descripcion_Cond_Pago,Origen_diferencias,Indicador_Debe_Haber,Referencia_Factura,Ejercicio_Referencia,Fecha_Vencimiento,Condicion_Pago,Codigo_Sucursal,
 Saldo_0_0_días,Saldo_1_15_días,Saldo_16_21_días,Saldo_22_30_días,Saldo_31_60_días,Saldo_61_90_días,Saldo_91_120_días,Saldo_121_180_días,Saldo_mayor_180_días,Saldo,Ruta,Clasificacion_Cliente,
 Codigo_Industria_1,Oficina_Ventas,Descripción_Of_Vtas,Grupo_Vendedores
@@ -13,3 +15,5 @@ Auto_incr, Sociedad, Numero_Cliente, Nombre_Cliente, Num_Ident_Fiscal, Responsab
 Referencia,Fe_Contable,Fecha_Documento,Fecha_Base,Descripcion_Cond_Pago,Origen_diferencias,Indicador_Debe_Haber,Referencia_Factura,Ejercicio_Referencia,Fecha_Vencimiento,Condicion_Pago,Codigo_Sucursal,
 Saldo_0_0_días,Saldo_1_15_días,Saldo_16_21_días,Saldo_22_30_días,Saldo_31_60_días,Saldo_61_90_días,Saldo_91_120_días,Saldo_121_180_días,Saldo_mayor_180_días,Saldo,Ruta,Clasificacion_Cliente,
 Codigo_Industria_1,Oficina_Ventas,Descripción_Of_Vtas,Grupo_Vendedores
+
+order by Numero_Cliente

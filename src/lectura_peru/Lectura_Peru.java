@@ -23,24 +23,23 @@ import org.sqlite.util.StringUtils;
  */
 public class Lectura_Peru {
     
-    public ArrayList<Partidas_Abiertas> list_pa=new ArrayList<Partidas_Abiertas>();
-    public Partidas_Abiertas pa;
-    private static DatabaseUtilities db = new DatabaseUtilities();
-    private static String db_name="db_prueba";
-    private static String tb_name="partidas_abiertas";
-    private static String url;
-    private static Map<Integer,String> columnas=new TreeMap<Integer, String>();
-    private static Connection connection;
+    private ArrayList<Partidas_Abiertas> list_pa=new ArrayList<Partidas_Abiertas>();
+    //private ArrayList<Partidas_Abiertas> list_pa1=new ArrayList<Partidas_Abiertas>();
+    private Partidas_Abiertas pa;
+    private  DatabaseUtilities db = new DatabaseUtilities();
+    private  String db_name="db_prueba";
+    private  String tb_name="partidas_abiertas";
+    private  String url;
+    private   Map<Integer,String> columnas=new TreeMap<Integer, String>();
+    private  Connection connection;
     
     private void lectura_fichero() {
         try {
 //            FileReader file = new FileReader("Aging101000031102017.XLS");
             FileReader file = new FileReader("Aging101000031102017_Ecuador.XLS");
             BufferedReader buf = new BufferedReader(file);
-            String encabezado="";
             String cad="";
             String arr[];
-            int i = 0;
             
             System.out.println(buf.readLine());
             System.out.println(buf.readLine());
@@ -64,12 +63,6 @@ public class Lectura_Peru {
             System.out.println(buf.readLine());
             //21 primera fila con valores
             int cant=21;
-            
-//             File file1=new File("db_prueba.db");//direccion fija por el momento
-//            if(file1.exists()){
-//                file1.delete();
-//                System.out.println(file1.exists());
-//            }
             
             url=db.createNewDatabase(db_name);
             add_campos();
@@ -115,12 +108,12 @@ public class Lectura_Peru {
 
 
         } catch (Exception e) {
-            //System.out.println("Error al intentar abrir el fichero");
+            //System.out.println("Error al intentar abrir el fichero");            
             e.printStackTrace();
         }
     }
     
-    private static double convert(String cad){
+    private  double convert(String cad){
         double res=0;
         if(cad.indexOf("-") != -1){
             res = Double.parseDouble(cad.replaceAll("\\W", "")) * -1 / 100;
@@ -130,7 +123,7 @@ public class Lectura_Peru {
         return res;
     }
     
-    private static Map<Integer,String> add_campos(){
+    private  Map<Integer,String> add_campos(){
         columnas = new TreeMap<Integer, String>();
 
         columnas.put(0, "Auto_incr");
@@ -180,6 +173,12 @@ public class Lectura_Peru {
         //System.out.println(columnas.get(0));
 
         return columnas;
+    }
+    
+    private void poblar_excel(){
+        db.sin_duplicar(url, tb_name, columnas);
+        ArrayList<Partidas_Abiertas> list_pa1=new ArrayList<Partidas_Abiertas>();
+        
     }
 
     /**
