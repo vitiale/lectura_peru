@@ -6,6 +6,7 @@
 package lectura_peru;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -64,6 +65,12 @@ public class Lectura_Peru {
             //21 primera fila con valores
             int cant=21;
             
+//             File file1=new File("db_prueba.db");//direccion fija por el momento
+//            if(file1.exists()){
+//                file1.delete();
+//                System.out.println(file1.exists());
+//            }
+            
             url=db.createNewDatabase(db_name);
             add_campos();
             //columnas.get(0);
@@ -102,14 +109,8 @@ public class Lectura_Peru {
                 }
             }
             db.insertIntoPartidas(url, tb_name, columnas, list_pa);
-//            for(int a = 0; a < lista.size(); a++)
-//            {
-//                //System.out.println(a);
-//                
-//                System.out.println(lista.get(a)[10]);
-//                System.out.println(a);
-//            }
-          //  System.out.println(contador);
+
+            System.out.println(cant);
             buf.close();
 
 

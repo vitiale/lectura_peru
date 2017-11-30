@@ -5,6 +5,7 @@
  */
 package lectura_peru;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.file.Paths;
@@ -35,6 +36,11 @@ public class DatabaseUtilities {
             e.printStackTrace(pw);
         }
         try {
+            File file=new File(dbname+".db");//direccion fija por el momento
+            if(file.exists()){
+                file.delete();
+                System.out.println(file.exists());
+            }
             url = "jdbc:sqlite:"+dbname+".db";
         } catch (Exception e) {
             //System.out.println("Error: " + e.getMessage());
