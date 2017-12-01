@@ -7,15 +7,29 @@ package lectura_peru;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.Buffer;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+
 import org.sqlite.util.StringUtils;
 
 /**
@@ -30,6 +44,7 @@ public class Lectura_Peru {
     private  DatabaseUtilities db = new DatabaseUtilities();
     private  String db_name="db_prueba";
     private  String tb_name="partidas_abiertas";
+    private  String input_file = "Aging101000031102017_Ecuador.XLS";
     private  String url;
     private   Map<Integer,String> columnas=new TreeMap<Integer, String>();
     private  Connection connection;
@@ -37,8 +52,13 @@ public class Lectura_Peru {
     private void lectura_fichero() {
         try {
 //            FileReader file = new FileReader("Aging101000031102017.XLS");
-            FileReader file = new FileReader("Aging101000031102017_Ecuador.XLS");
-            BufferedReader buf = new BufferedReader(file);
+            //FileReader file = new FileReader("Aging101000031102017_Ecuador.XLS");
+            InputStream is = new FileInputStream(Paths
+                    .get(input_file).toFile());
+            //BufferedReader buf = new BufferedReader(file);
+            //BufferedReader buf = new BufferedReader(new InputStreamReader(is, "8859_1"));
+            BufferedReader buf = new BufferedReader(new InputStreamReader(is, "UTF-16"));
+            
             String cad="";
             String arr[];
             
@@ -52,16 +72,16 @@ public class Lectura_Peru {
             System.out.println(buf.readLine());
             System.out.println(buf.readLine());
             System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());//17 nombres de las columnas
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
-            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());//17 nombres de las columnas
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
+//            System.out.println(buf.readLine());
             //21 primera fila con valores
             int cant=21;
             
@@ -178,16 +198,91 @@ public class Lectura_Peru {
         return columnas;
     }
     
-    private void poblar_excel() throws SQLException{
+    public static void escribir_hoja_calc(ArrayList<Partidas_Abiertas> list_pa1) throws FileNotFoundException, IOException{
+        try {
+            File file = new File("LayoutAR_CASA-Provisión - copia.xlsx");
+        FileInputStream in = new FileInputStream(file);
+         Workbook libro = WorkbookFactory.create(in);
+         Sheet hoja_actual = libro.getSheetAt(1);
+         int cont_row=9;
+         for(Partidas_Abiertas partida : list_pa1){
+             Row row = hoja_actual.createRow(cont_row);
+             Cell cell;
+             System.out.println(partida.getSociedad());
+             for(int a = 0; a < 43; a++) {
+                 switch(a){
+                     case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
+                     case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;
+                     case 2: cell = row.createCell(2);  cell.setCellValue(partida.getNombre_Cliente());break;
+                     case 3: cell = row.createCell(3);  cell.setCellValue(partida.getNum_Ident_Fiscal());break;
+                     case 4: cell = row.createCell(4);  cell.setCellValue(partida.getResponsable());break;
+                     case 5: cell = row.createCell(5);  cell.setCellValue(partida.getTexto_Responsable());break;
+                     case 6: cell = row.createCell(6);  cell.setCellValue(partida.getCanal_Ventas());break;
+                     case 7: cell = row.createCell(7);  cell.setCellValue(partida.getDescripcion_Canal());break;
+                     case 8: cell = row.createCell(8);  cell.setCellValue(partida.getIndicador_CME());break;
+                     case 9: cell = row.createCell(9);  cell.setCellValue(partida.getNum_Documento_Compensacion());break;
+                     case 10: cell = row.createCell(10);  cell.setCellValue(partida.getFecha_Compens());break;
+                     case 11: cell = row.createCell(11);  cell.setCellValue(partida.getNombre_Sucursal());break;
+                     case 12: cell = row.createCell(12);  cell.setCellValue(partida.getClase_Documento());break;
+                     case 13: cell = row.createCell(13);  cell.setCellValue(partida.getNumero_Documento());break;
+                     case 14: cell = row.createCell(14);  cell.setCellValue(partida.getEjercicio());break;
+                     case 15: cell = row.createCell(15);  cell.setCellValue(partida.getReferencia());break;
+                     case 16: cell = row.createCell(16);  cell.setCellValue(partida.getFe_Contable());break;
+                     case 17: cell = row.createCell(17);  cell.setCellValue(partida.getFecha_Documento());break;
+                     case 18: cell = row.createCell(18);  cell.setCellValue(partida.getFecha_Base());break;
+                     case 19: cell = row.createCell(19);  cell.setCellValue(partida.getDescripcion_Cond_Pago());break;
+                     case 20: cell = row.createCell(20);  cell.setCellValue(partida.getOrigen_diferencias());break;
+                     case 21: cell = row.createCell(21);  cell.setCellValue(partida.getIndicador_Debe_Haber());break;
+                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getReferencia_Factura());break;
+                     case 23: cell = row.createCell(23);  cell.setCellValue(partida.getEjercicio_Referencia());break;
+                     case 24: cell = row.createCell(24);  cell.setCellValue(partida.getFecha_Vencimiento());break;
+                     case 25: cell = row.createCell(25);  cell.setCellValue(partida.getCondicion_Pago());break;
+                     case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCodigo_Sucursal());break;
+                     case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días());break;
+                     case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días());break;
+                     case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días());break;
+                     case 30: cell = row.createCell(30);  cell.setCellValue(partida.getSaldo_22_30_días());break;
+                     case 31: cell = row.createCell(31);  cell.setCellValue(partida.getSaldo_31_60_días());break;
+                     case 32: cell = row.createCell(32);  cell.setCellValue(partida.getSaldo_61_90_días());break;
+                     case 33: cell = row.createCell(33);  cell.setCellValue(partida.getSaldo_91_120_días());break;
+                     case 34: cell = row.createCell(34);  cell.setCellValue(partida.getSaldo_121_180_días());break;
+                     case 35: cell = row.createCell(35);  cell.setCellValue(partida.getSaldo_mayor_180_días());break;
+                     case 36: cell = row.createCell(36);  cell.setCellValue(partida.getSaldo());break;
+                     case 37: cell = row.createCell(37);  cell.setCellValue(partida.getRuta());break;
+                     case 38: cell = row.createCell(38);  cell.setCellValue(partida.getClasificacion_Cliente());break;
+                     case 39: cell = row.createCell(39);  cell.setCellValue(partida.getCodigo_Industria_1());break;
+                     case 40: cell = row.createCell(40);  cell.setCellValue(partida.getOficina_Ventas());break;
+                     case 41: cell = row.createCell(41);  cell.setCellValue(partida.getDescripción_Of_Vtas());break;
+                     case 42: cell = row.createCell(42);  cell.setCellValue(partida.getGrupo_Vendedores());break;
+                 }
+                 
+             }
+             cont_row++;
+         }
+//         Row row = hoja_actual.createRow(9);
+//         Cell cell = row.createCell(0);
+         
+//        cell.setCellValue("hola");
+        FileOutputStream fileOut = new FileOutputStream("LayoutAR_CASA-Provisión - copia.xlsx");
+        libro.write(fileOut);
+        fileOut.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+         
+    }
+    
+    private void poblar_excel() throws SQLException, IOException{
         ArrayList<Partidas_Abiertas> list_pa1=db.sin_duplicar(url, tb_name, columnas);
-        System.out.println(list_pa1.size());
+        
+        escribir_hoja_calc(list_pa1);
         //System.out.println(list_pa1.get(0).getNumero_Cliente());
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         // TODO code application logic here
         Lectura_Peru per=new Lectura_Peru();
         per.lectura_fichero();

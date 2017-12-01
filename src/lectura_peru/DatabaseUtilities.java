@@ -161,8 +161,7 @@ public class DatabaseUtilities {
                     }                  
                 }
             }
-        }System.out.println("columns "+columns.size());
-        System.out.println(partidasInformation);
+        }
         return partidasInformation;
     }
     
@@ -200,72 +199,16 @@ public class DatabaseUtilities {
             prepareStatement = connection.prepareStatement(sqlQuery.toString());
             int p=0;
             for(Partidas_Abiertas partidas: lista_pa)
-            {    
-                System.out.println(lista_pa.size());
-//                System.out.println(p+"  "+partidas.getSociedad());
-//                System.out.println(p+"  "+partidas.getNumero_Cliente());
-//                System.out.println(p+"  "+partidas.getNombre_Cliente());
-//                System.out.println(p+"  "+partidas.getNum_Ident_Fiscal());
-//                System.out.println(p+"  "+partidas.getResponsable());
-//                System.out.println(p+"  "+partidas.getTexto_Responsable());
-//                System.out.println(p+"  "+partidas.getCanal_Ventas());
-//                System.out.println(p+"  "+partidas.getDescripcion_Canal());
-//                System.out.println(p+"  "+partidas.getIndicador_CME());
-//                System.out.println(p+"  "+partidas.getNum_Documento_Compensacion());
-//                System.out.println(p+"  "+partidas.getFecha_Compens());
-//                System.out.println(p+"  "+partidas.getNombre_Sucursal());
-//                System.out.println(p+"  "+partidas.getClase_Documento());
-//                System.out.println(p+"  "+partidas.getNumero_Documento());
-//                System.out.println(p+"  "+partidas.getEjercicio());
-//                System.out.println(p+"  "+partidas.getFe_Contable());
-//                System.out.println(p+"  "+partidas.getFecha_Documento());
-//                System.out.println(p+"  "+partidas.getFecha_Base());
-//                System.out.println(p+"  "+partidas.getDescripcion_Cond_Pago());
-//                System.out.println(p+"  "+partidas.getOrigen_diferencias());
-//                System.out.println(p+"  "+partidas.getIndicador_Debe_Haber());
-//                System.out.println(p+"  "+partidas.getReferencia_Factura());
-//                System.out.println(p+"  "+partidas.getEjercicio_Referencia());
-//                System.out.println(p+"  "+partidas.getFecha_Vencimiento());
-//                System.out.println(p+"  "+partidas.getCondicion_Pago());
-//                System.out.println(p+"  "+partidas.getCodigo_Sucursal());
-//                System.out.println(p+"  "+partidas.getSaldo_0_0_días());
-//                System.out.println(p+"  "+partidas.getSaldo_1_15_días());
-//                System.out.println(p+"  "+partidas.getSaldo_16_21_días());
-//                System.out.println(p+"  "+partidas.getSaldo_22_30_días());
-//                System.out.println(p+"  "+partidas.getSaldo_31_60_días());
-//                System.out.println(p+"  "+partidas.getSaldo_61_90_días());
-//                System.out.println(p+"  "+partidas.getSaldo_91_120_días());
-//                System.out.println(p+"  "+partidas.getSaldo_121_180_días());
-//                System.out.println(p+"  "+partidas.getSaldo_mayor_180_días());
-//                System.out.println(p+"  "+partidas.getSaldo());
-//                System.out.println(p+"  "+partidas.getRuta());
-//                System.out.println(p+"  "+partidas.getClasificacion_Cliente());
-//                System.out.println(p+"  "+partidas.getCodigo_Industria_1());
-//                System.out.println(p+"  "+partidas.getOficina_Ventas());
-//                System.out.println(p+"  "+partidas.getDescripción_Of_Vtas());
-//                System.out.println(p+"  "+partidas.getGrupo_Vendedores());        
-//                p++;
-//                
-                
-                System.out.println("dentro");
+            {                    
                 prepareStatement.setString(1, partidas.getSociedad());
-                System.out.println("0");
                 prepareStatement.setString(2, partidas.getNumero_Cliente());
-                System.out.println("1");
                 prepareStatement.setString(3, partidas.getNombre_Cliente());
-                System.out.println("2");
                 prepareStatement.setString(4, partidas.getNum_Ident_Fiscal());
-                System.out.println("3");
                 prepareStatement.setString(5, partidas.getResponsable());
-                System.out.println("4");
                 prepareStatement.setString(6, partidas.getTexto_Responsable());
-                System.out.println("5");
                 prepareStatement.setString(7, partidas.getCanal_Ventas());
-                System.out.println("6");
                 prepareStatement.setString(8, partidas.getDescripcion_Canal());
-                System.out.println("7");
                 prepareStatement.setString(9, partidas.getIndicador_CME());
-                System.out.println("8");
                 prepareStatement.setString(10, partidas.getNum_Documento_Compensacion());
                 prepareStatement.setString(11, partidas.getFecha_Compens());
                 prepareStatement.setString(12, partidas.getNombre_Sucursal());
@@ -347,17 +290,18 @@ public class DatabaseUtilities {
             ResultSet rs = stmt.executeQuery(sql +"\n"+ col + "\n FROM \n" + tableName + "\n GROUP BY \n" + col + "\n ORDER BY Numero_Cliente;");
             
             while (rs.next()) {
-                System.out.println(rs.getString(40));
-//                lista.add(new Partidas_Abiertas(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
-//                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13),
-//                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
-//                        rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27),
-//                        rs.getInt(28), rs.getInt(29), rs.getInt(30), rs.getInt(31), rs.getInt(32), rs.getInt(33), rs.getInt(34), rs.getInt(35), rs.getInt(36), rs.getInt(0),
-//                        rs.getString(37), rs.getString(38), rs.getString(39), rs.getString(40), rs.getString(41), rs.getString(42)));
+                lista.add(new Partidas_Abiertas(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13),
+                        rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
+                        rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27),
+                        rs.getInt(28), rs.getInt(29), rs.getInt(30), rs.getInt(31), rs.getInt(32), rs.getInt(33), rs.getInt(34), rs.getInt(35), rs.getInt(36), rs.getInt(37),
+                        rs.getString(38), rs.getString(39), rs.getString(40), rs.getString(41), rs.getString(42), rs.getString(43)));
                 
-            }
-            
+            }            
+                //System.out.println("lista dev "+lista.get(3).getSociedad());
+            connection.close();
         } catch (Exception e) {
+            System.out.println("error");
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
