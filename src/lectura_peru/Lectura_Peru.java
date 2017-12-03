@@ -14,16 +14,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.nio.Buffer;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -44,7 +48,8 @@ public class Lectura_Peru {
     private  DatabaseUtilities db = new DatabaseUtilities();
     private  String db_name="db_prueba";
     private  String tb_name="partidas_abiertas";
-    private  String input_file = "Aging101000031102017_Ecuador.XLS";
+    private  String input_file = "1010002 31 OCTUBRE 17 Colombia.XLS";
+    private  String output_file = "LayoutAR_CASA-Provisión - copia.xlsx";
     private  String url;
     private   Map<Integer,String> columnas=new TreeMap<Integer, String>();
     private  Connection connection;
@@ -72,18 +77,8 @@ public class Lectura_Peru {
             System.out.println(buf.readLine());
             System.out.println(buf.readLine());
             System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());//17 nombres de las columnas
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-//            System.out.println(buf.readLine());
-            //21 primera fila con valores
-            int cant=21;
+            
+            int cant=10;
             
             url=db.createNewDatabase(db_name);
             add_campos();
@@ -95,35 +90,35 @@ public class Lectura_Peru {
             //ArrayList<String[]> lista = new ArrayList<String[]>();
             while((cad=buf.readLine())!=null){ 
                 if(cad.split("\t").length == 45)
-                {
-                    if(cant%2!=0){
+                {    
+                    //if(cant%2!=0){
                          arr = cad.split("\t");
                          //lista.add(arr);
                         if(arr.length == 45)
                         {     
-                            //System.out.println(arr[38]+"   "+convert(arr[38]));
+                            System.out.println(arr[29]);
                              pa = new Partidas_Abiertas(arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], arr[10], arr[11],
                                     arr[12], arr[13], arr[14], arr[15], arr[16], arr[17], arr[18], arr[19], arr[20], arr[21], arr[22], arr[23],
                                     arr[24], arr[25], arr[26], arr[27], arr[28],
-                                     convert(arr[29]), 
-                                     convert(arr[30]), 
-                                     convert(arr[31]), 
-                                     convert(arr[32]), 
-                                     convert(arr[33]), 
-                                     convert(arr[34]), 
-                                     convert(arr[35]), 
-                                     convert(arr[36]), 
-                                     convert(arr[37]), 
-                                     convert(arr[38]),
+                                     convert_double(arr[29]), 
+                                     convert_double(arr[30]),                                      
+                                     convert_double(arr[31]), 
+                                     convert_double(arr[32]), 
+                                     convert_double(arr[33]), 
+                                     convert_double(arr[34]), 
+                                     convert_double(arr[35]), 
+                                     convert_double(arr[36]), 
+                                     convert_double(arr[37]), 
+                                     convert_double(arr[38]),
                                      arr[39], arr[40], arr[41], arr[42], arr[43], arr[44]);
-                            list_pa.add(pa);
+                             list_pa.add(pa);
                         }
-                    }
+                    //}
                     cant++;
                 }
             }
             
-                            System.out.println("size of list_pa "+list_pa.size());
+                            //System.out.println("size of list_pa "+list_pa.size());
             db.insertIntoPartidas(url, tb_name, columnas, list_pa);
 
             System.out.println(cant);
@@ -144,6 +139,36 @@ public class Lectura_Peru {
             res = Double.parseDouble(cad.replaceAll("\\W", "")) / 100;
         }
         return res;
+    }
+    
+    private  double convert_double(String cad){
+        if(cad.indexOf(",")!=-1){
+            cad=cad.replaceAll(",", "");
+        }
+        return Double.parseDouble(cad);
+    }
+    
+    private BigDecimal convert_big(String cad) {
+        BigDecimal bigDecimal=new BigDecimal(cad);
+        try {
+            DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+            symbols.setGroupingSeparator(',');
+            symbols.setDecimalSeparator('.');
+            String pattern = "#,##0.0#";
+            DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
+            decimalFormat.setParseBigDecimal(true);
+            if(cad.indexOf(",")!=-1){
+                // parse the string
+                bigDecimal = (BigDecimal) decimalFormat.parse(cad);
+            }else{
+                bigDecimal = new BigDecimal(cad);
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(bigDecimal);
+        return bigDecimal;
     }
     
     private  Map<Integer,String> add_campos(){
@@ -198,9 +223,9 @@ public class Lectura_Peru {
         return columnas;
     }
     
-    public static void escribir_hoja_calc(ArrayList<Partidas_Abiertas> list_pa1) throws FileNotFoundException, IOException{
+    public void escribir_hoja_calc(ArrayList<Partidas_Abiertas> list_pa1) throws FileNotFoundException, IOException{
         try {
-            File file = new File("LayoutAR_CASA-Provisión - copia.xlsx");
+            File file = new File(output_file);
         FileInputStream in = new FileInputStream(file);
          Workbook libro = WorkbookFactory.create(in);
          Sheet hoja_actual = libro.getSheetAt(1);
@@ -263,7 +288,7 @@ public class Lectura_Peru {
 //         Cell cell = row.createCell(0);
          
 //        cell.setCellValue("hola");
-        FileOutputStream fileOut = new FileOutputStream("LayoutAR_CASA-Provisión - copia.xlsx");
+        FileOutputStream fileOut = new FileOutputStream(output_file);
         libro.write(fileOut);
         fileOut.close();
         } catch (Exception e) {

@@ -294,7 +294,7 @@ public class DatabaseUtilities {
                         rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13),
                         rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
                         rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27),
-                        rs.getInt(28), rs.getInt(29), rs.getInt(30), rs.getInt(31), rs.getInt(32), rs.getInt(33), rs.getInt(34), rs.getInt(35), rs.getInt(36), rs.getInt(37),
+                        rs.getDouble(28), rs.getDouble(29), rs.getDouble(30), rs.getDouble(31), rs.getDouble(32), rs.getDouble(33), rs.getDouble(34), rs.getDouble(35), rs.getDouble(36), rs.getDouble(37),
                         rs.getString(38), rs.getString(39), rs.getString(40), rs.getString(41), rs.getString(42), rs.getString(43)));
                 
             }            

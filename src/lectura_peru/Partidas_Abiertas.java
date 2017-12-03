@@ -5,6 +5,8 @@
  */
 package lectura_peru;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author X220
@@ -22,6 +24,7 @@ public class Partidas_Abiertas {
     private String Indicador_CME;
     private String Num_Documento_Compensacion;
     private String Fecha_Compens;
+    private String Codigo_Sucursal; //arreglar este campo
     private String Nombre_Sucursal;
     private String Clase_Documento;
     private String Numero_Documento;
@@ -37,7 +40,6 @@ public class Partidas_Abiertas {
     private String Ejercicio_Referencia;
     private String Fecha_Vencimiento;
     private String Condicion_Pago;
-    private String Codigo_Sucursal;
     private double Saldo_0_0_días;
     private double Saldo_1_15_días;
     private double Saldo_16_21_días;
@@ -56,6 +58,7 @@ public class Partidas_Abiertas {
     private String Grupo_Vendedores;
 
     public Partidas_Abiertas(String Sociedad, String Numero_Cliente, String Nombre_Cliente, String Num_Ident_Fiscal, String Responsable, String Texto_Responsable, String Canal_Ventas, String Descripcion_Canal, String Indicador_CME, String Num_Documento_Compensacion, String Fecha_Compens, String Nombre_Sucursal, String Clase_Documento, String Numero_Documento, String Ejercicio, String Referencia, String Fe_Contable, String Fecha_Documento, String Fecha_Base, String Descripcion_Cond_Pago, String Origen_diferencias, String Indicador_Debe_Haber, String Referencia_Factura, String Ejercicio_Referencia, String Fecha_Vencimiento, String Condicion_Pago, String Codigo_Sucursal, double Saldo_0_0_días, double Saldo_1_15_días, double Saldo_16_21_días, double Saldo_22_30_días, double Saldo_31_60_días, double Saldo_61_90_días, double Saldo_91_120_días, double Saldo_121_180_días, double Saldo_mayor_180_días, double Saldo, String Ruta, String Clasificacion_Cliente, String Codigo_Industria_1, String Oficina_Ventas, String Descripción_Of_Vtas, String Grupo_Vendedores) {
+        //0-42
         this.Sociedad = Sociedad;
         this.Numero_Cliente = Numero_Cliente;
         this.Nombre_Cliente = Nombre_Cliente;
@@ -444,8 +447,7 @@ public class Partidas_Abiertas {
     public void setGrupo_Vendedores(String Grupo_Vendedores) {
         this.Grupo_Vendedores = Grupo_Vendedores;
     }
-    
-    
 
+    
     
 }
