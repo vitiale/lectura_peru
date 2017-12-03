@@ -286,8 +286,8 @@ public class DatabaseUtilities {
             }
             connection = connectDatabase(url);
             Statement stmt = connection.createStatement();
-            System.out.println(sql + col + " FROM " + tableName + " GROUP BY " + col + " ORDER BY Numero_Cliente;");
-            ResultSet rs = stmt.executeQuery(sql +"\n"+ col + "\n FROM \n" + tableName + "\n GROUP BY \n" + col + "\n ORDER BY Numero_Cliente;");
+            System.out.println(sql + col + " FROM " + tableName + " ORDER BY Numero_Cliente, Referencia_Factura;");
+            ResultSet rs = stmt.executeQuery(sql + col + " FROM " + tableName + " ORDER BY Numero_Cliente, Referencia_Factura;");
             
             while (rs.next()) {
                 lista.add(new Partidas_Abiertas(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),

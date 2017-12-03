@@ -140,7 +140,7 @@ public class Lectura_Peru {
         }
         return res;
     }
-    
+    //actualmente en uso
     private  double convert_double(String cad){
         if(cad.indexOf(",")!=-1){
             cad=cad.replaceAll(",", "");
@@ -186,22 +186,22 @@ public class Lectura_Peru {
         columnas.put(8, "Indicador_CME");
         columnas.put(9, "Num_Documento_Compensacion");
         columnas.put(10, "Fecha_Compens");
-        columnas.put(11, "Nombre_Sucursal");
-        columnas.put(12, "Clase_Documento");
-        columnas.put(13, "Numero_Documento");
-        columnas.put(14, "Ejercicio");
-        columnas.put(15, "Referencia");
-        columnas.put(16, "Fe_Contable");
-        columnas.put(17, "Fecha_Documento");
-        columnas.put(18, "Fecha_Base");
-        columnas.put(19, "Descripcion_Cond_Pago");
-        columnas.put(20, "Origen_diferencias");
-        columnas.put(21, "Indicador_Debe_Haber");
-        columnas.put(22, "Referencia_Factura");
-        columnas.put(23, "Ejercicio_Referencia");
-        columnas.put(24, "Fecha_Vencimiento");
-        columnas.put(25, "Condicion_Pago");
-        columnas.put(26, "Codigo_Sucursal");
+        columnas.put(11, "Codigo_Sucursal");
+        columnas.put(12, "Nombre_Sucursal");
+        columnas.put(13, "Clase_Documento");
+        columnas.put(14, "Numero_Documento");
+        columnas.put(15, "Ejercicio");
+        columnas.put(16, "Referencia");
+        columnas.put(17, "Fe_Contable");
+        columnas.put(18, "Fecha_Documento");
+        columnas.put(19, "Fecha_Base");
+        columnas.put(20, "Descripcion_Cond_Pago");
+        columnas.put(21, "Origen_diferencias");
+        columnas.put(22, "Indicador_Debe_Haber");
+        columnas.put(23, "Referencia_Factura");
+        columnas.put(24, "Ejercicio_Referencia");
+        columnas.put(25, "Fecha_Vencimiento");
+        columnas.put(26, "Condicion_Pago");
         columnas.put(27, "Saldo_0_0_días");
         columnas.put(28, "Saldo_1_15_días");
         columnas.put(29, "Saldo_16_21_días");
@@ -234,7 +234,7 @@ public class Lectura_Peru {
              Row row = hoja_actual.createRow(cont_row);
              Cell cell;
              System.out.println(partida.getSociedad());
-             for(int a = 0; a < 43; a++) {
+             for(int a = 0; a < 43; a++) {//no tengo que hacerlo dentro de un ciclo
                  switch(a){
                      case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
                      case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;

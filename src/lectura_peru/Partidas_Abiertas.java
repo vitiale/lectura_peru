@@ -70,6 +70,7 @@ public class Partidas_Abiertas {
         this.Indicador_CME = Indicador_CME;
         this.Num_Documento_Compensacion = Num_Documento_Compensacion;
         this.Fecha_Compens = Fecha_Compens;
+        this.Codigo_Sucursal = Codigo_Sucursal;
         this.Nombre_Sucursal = Nombre_Sucursal;
         this.Clase_Documento = Clase_Documento;
         this.Numero_Documento = Numero_Documento;
@@ -85,7 +86,6 @@ public class Partidas_Abiertas {
         this.Ejercicio_Referencia = Ejercicio_Referencia;
         this.Fecha_Vencimiento = Fecha_Vencimiento;
         this.Condicion_Pago = Condicion_Pago;
-        this.Codigo_Sucursal = Codigo_Sucursal;
         this.Saldo_0_0_días = Saldo_0_0_días;
         this.Saldo_1_15_días = Saldo_1_15_días;
         this.Saldo_16_21_días = Saldo_16_21_días;
