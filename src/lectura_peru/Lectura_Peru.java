@@ -230,14 +230,21 @@ public class Lectura_Peru {
          Workbook libro = WorkbookFactory.create(in);
          Sheet hoja_actual = libro.getSheetAt(1);
          int cont_row=9;
+         int previous=-1;
+         String before_num_cl=list_pa1.get(0).getNumero_Cliente();
+         String before_ref_fact=list_pa1.get(0).getReferencia_Factura();
+         String actual_num_cl="";
+         String actual_ref_fact="";
+         int repeticion=0;
          for(Partidas_Abiertas partida : list_pa1){
              Row row = hoja_actual.createRow(cont_row);
              Cell cell;
-             System.out.println(partida.getSociedad());
+             double saldo_0_0=0,saldo_1_15=0,saldo_16_21=0,saldo_22_30=0,saldo_31_60=0,saldo_61_90=0,saldo_91_120=0,saldo_121_180=0,saldo_mayor_181=0;
+             //System.out.println(partida.getSociedad());
              for(int a = 0; a < 43; a++) {//no tengo que hacerlo dentro de un ciclo
                  switch(a){
                      case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
-                     case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;
+                     case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente()); actual_num_cl=partida.getNumero_Cliente() ;break;
                      case 2: cell = row.createCell(2);  cell.setCellValue(partida.getNombre_Cliente());break;
                      case 3: cell = row.createCell(3);  cell.setCellValue(partida.getNum_Ident_Fiscal());break;
                      case 4: cell = row.createCell(4);  cell.setCellValue(partida.getResponsable());break;
@@ -258,21 +265,21 @@ public class Lectura_Peru {
                      case 19: cell = row.createCell(19);  cell.setCellValue(partida.getDescripcion_Cond_Pago());break;
                      case 20: cell = row.createCell(20);  cell.setCellValue(partida.getOrigen_diferencias());break;
                      case 21: cell = row.createCell(21);  cell.setCellValue(partida.getIndicador_Debe_Haber());break;
-                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getReferencia_Factura());break;
+                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getReferencia_Factura()); actual_ref_fact=partida.getReferencia_Factura() ;break;
                      case 23: cell = row.createCell(23);  cell.setCellValue(partida.getEjercicio_Referencia());break;
                      case 24: cell = row.createCell(24);  cell.setCellValue(partida.getFecha_Vencimiento());break;
                      case 25: cell = row.createCell(25);  cell.setCellValue(partida.getCondicion_Pago());break;
                      case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCodigo_Sucursal());break;
-                     case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días());break;
-                     case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días());break;
-                     case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días());break;
-                     case 30: cell = row.createCell(30);  cell.setCellValue(partida.getSaldo_22_30_días());break;
-                     case 31: cell = row.createCell(31);  cell.setCellValue(partida.getSaldo_31_60_días());break;
-                     case 32: cell = row.createCell(32);  cell.setCellValue(partida.getSaldo_61_90_días());break;
-                     case 33: cell = row.createCell(33);  cell.setCellValue(partida.getSaldo_91_120_días());break;
-                     case 34: cell = row.createCell(34);  cell.setCellValue(partida.getSaldo_121_180_días());break;
-                     case 35: cell = row.createCell(35);  cell.setCellValue(partida.getSaldo_mayor_180_días());break;
-                     case 36: cell = row.createCell(36);  cell.setCellValue(partida.getSaldo());break;
+                     case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días()); saldo_0_0=partida.getSaldo_0_0_días();break;
+                     case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días()); saldo_1_15=partida.getSaldo_1_15_días() ;break;
+                     case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días()); saldo_16_21=partida.getSaldo_16_21_días(); break;
+                     case 30: cell = row.createCell(30);  cell.setCellValue(partida.getSaldo_22_30_días()); saldo_22_30=partida.getSaldo_22_30_días(); break;
+                     case 31: cell = row.createCell(31);  cell.setCellValue(partida.getSaldo_31_60_días()); saldo_31_60=partida.getSaldo_31_60_días(); break;
+                     case 32: cell = row.createCell(32);  cell.setCellValue(partida.getSaldo_61_90_días()); saldo_61_90=partida.getSaldo_61_90_días() ;break;
+                     case 33: cell = row.createCell(33);  cell.setCellValue(partida.getSaldo_91_120_días()); saldo_91_120=partida.getSaldo_91_120_días() ;break;
+                     case 34: cell = row.createCell(34);  cell.setCellValue(partida.getSaldo_121_180_días()); saldo_121_180=partida.getSaldo_121_180_días() ;break;
+                     case 35: cell = row.createCell(35);  cell.setCellValue(partida.getSaldo_mayor_180_días()); saldo_mayor_181=partida.getSaldo_mayor_180_días() ;break;
+                     case 36: cell = row.createCell(36);  cell.setCellValue(partida.getSaldo()); saldo_mayor_181=partida.getSaldo() ;break;
                      case 37: cell = row.createCell(37);  cell.setCellValue(partida.getRuta());break;
                      case 38: cell = row.createCell(38);  cell.setCellValue(partida.getClasificacion_Cliente());break;
                      case 39: cell = row.createCell(39);  cell.setCellValue(partida.getCodigo_Industria_1());break;
@@ -281,8 +288,44 @@ public class Lectura_Peru {
                      case 42: cell = row.createCell(42);  cell.setCellValue(partida.getGrupo_Vendedores());break;
                  }
                  
-             }
+             }   
+             if(actual_num_cl.equals(before_num_cl) && actual_ref_fact.equals(before_ref_fact) && previous!=-1){
+                     System.out.println("contador fila  "+cont_row);
+                     if((saldo_0_0+saldo_1_15+saldo_16_21+saldo_22_30+saldo_31_60+saldo_61_90+saldo_91_120+saldo_121_180+saldo_mayor_181) == 0){
+                         Row row_aux=hoja_actual.getRow(cont_row-1);
+                         row.createCell(44).setCellValue(0.00);
+                         row.createCell(45).setCellValue(0.00);
+                         row.createCell(46).setCellValue(0.00);
+                         row.createCell(47).setCellValue(0.00);
+                         row.createCell(48).setCellValue(0.00);
+                         row.createCell(49).setCellValue(0.00);
+                         row.createCell(50).setCellValue(0.00);
+                         row.createCell(51).setCellValue(0.00);
+                         row.createCell(52).setCellValue(0.00);
+                     }
+                     repeticion++;
+                 }else{
+                     //previous=cont_row-9;
+                     if(repeticion>0){
+                         Row row_aux=hoja_actual.getRow(cont_row);
+                         row.createCell(44).setCellValue(0.00);
+                         row.createCell(45).setCellValue(0.00);
+                         row.createCell(46).setCellValue(0.00);
+                         row.createCell(47).setCellValue(0.00);
+                         row.createCell(48).setCellValue(0.00);
+                         row.createCell(49).setCellValue(0.00);
+                         row.createCell(50).setCellValue(0.00);
+                         row.createCell(51).setCellValue(0.00);
+                         row.createCell(52).setCellValue(0.00);
+                     }
+                     repeticion=0;
+                     //se copian como vienen en el bloque de subtotalizacion
+                     
+                 }
              cont_row++;
+             previous++;//se puede utilizar el mismo count_row para esto
+             before_num_cl=list_pa1.get(previous).getNumero_Cliente();
+             before_ref_fact=list_pa1.get(previous).getReferencia_Factura();
          }
 //         Row row = hoja_actual.createRow(9);
 //         Cell cell = row.createCell(0);
@@ -292,7 +335,8 @@ public class Lectura_Peru {
         libro.write(fileOut);
         fileOut.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
          
     }
