@@ -294,14 +294,22 @@ public class DatabaseUtilities {
                         rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13),
                         rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
                         rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27),
-                        rs.getDouble(28), rs.getDouble(29), rs.getDouble(30), rs.getDouble(31), rs.getDouble(32), rs.getDouble(33), rs.getDouble(34), rs.getDouble(35), rs.getDouble(36), rs.getDouble(37),
-                        rs.getString(38), rs.getString(39), rs.getString(40), rs.getString(41), rs.getString(42), rs.getString(43)));
+                        rs.getDouble(28), rs.getDouble(29), rs.getDouble(30), rs.getDouble(31), rs.getDouble(32), rs.getDouble(33), rs.getDouble(34),
+                        rs.getDouble(35), rs.getDouble(36), rs.getDouble(37),rs.getString(38), rs.getString(39), rs.getString(40), rs.getString(41),
+                        rs.getString(42), rs.getString(43)));
                 
-            }            
+            }System.out.println(lista.get(0).getClase_Documento());
+//            System.out.println("lista pos \n"+lista.get(0).getSociedad()+"\n"+lista.get(0).getNumero_Cliente()+"\n"+ lista.get(0).getNombre_Cliente()+"\n"+ 
+//                    lista.get(0).getNum_Ident_Fiscal()+"\n"+lista.get(0).getResponsable()+"\n"+lista.get(0).getTexto_Responsable()+"\n"+
+//                    lista.get(0).getCanal_Ventas()+"\n"+lista.get(0).getDescripcion_Canal()+"\n"+lista.get(0).getIndicador_CME()+"\n"+
+//                    lista.get(0).getNum_Documento_Compensacion()+"\n"+lista.get(0).getFecha_Compens()+"\n"+lista.get(0).getCodigo_Sucursal()+"\n"+
+//                    lista.get(0).getNombre_Sucursal()+"\n"+lista.get(0).getClase_Documento()+"\n"+lista.get(0).getNumero_Documento()+"\n"+
+//                    lista.get(0).getEjercicio()+"\n"+lista.get(0).getReferencia()+"\n"+lista.get(0).getFe_Contable()+"\n"+
+//                    lista.get(0).getFecha_Documento()+"\n"+lista.get(0).getFecha_Base()+"\n"+lista.get(0).getDescripcion_Cond_Pago()+"blanco");
                 //System.out.println("lista dev "+lista.get(3).getSociedad());
             connection.close();
         } catch (Exception e) {
-            System.out.println("error");
+            System.err.println("error");
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
