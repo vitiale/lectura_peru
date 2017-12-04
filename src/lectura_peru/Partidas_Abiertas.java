@@ -105,52 +105,7 @@ public class Partidas_Abiertas {
     
     
 
-//    public Partidas_Abiertas(String Sociedad, String Numero_Cliente, String Nombre_Cliente, String Num_Ident_Fiscal, String Responsable, String Texto_Responsable, String Canal_Ventas, String Descripcion_Canal, String Indicador_CME, String Num_Documento_Compensacion, String Fecha_Compens, String Codigo_Sucursal, String Nombre_Sucursal, String Clase_Documento, String Numero_Documento, String Ejercicio, String Referencia, String Fe_Contable, String Fecha_Documento, String Fecha_Base, String Descripcion_Cond_Pago, String Origen_diferencias, String Indicador_Debe_Haber, String Referencia_Factura, String Ejercicio_Referencia, String Fecha_Vencimiento, String Condicion_Pago,  double Saldo_0_0_días, double Saldo_1_15_días, double Saldo_16_21_días, double Saldo_22_30_días, double Saldo_31_60_días, double Saldo_61_90_días, double Saldo_91_120_días, double Saldo_121_180_días, double Saldo_mayor_180_días, double Saldo, String Ruta, String Clasificacion_Cliente, String Codigo_Industria_1, String Oficina_Ventas, String Descripción_Of_Vtas, String Grupo_Vendedores) {
-//        //0-42
-//        this.Sociedad = Sociedad;
-//        this.Numero_Cliente = Numero_Cliente;
-//        this.Nombre_Cliente = Nombre_Cliente;
-//        this.Num_Ident_Fiscal = Num_Ident_Fiscal;
-//        this.Responsable = Responsable;
-//        this.Texto_Responsable = Texto_Responsable;
-//        this.Canal_Ventas = Canal_Ventas;
-//        this.Descripcion_Canal = Descripcion_Canal;
-//        this.Indicador_CME = Indicador_CME;
-//        this.Num_Documento_Compensacion = Num_Documento_Compensacion;
-//        this.Fecha_Compens = Fecha_Compens;
-//        this.Codigo_Sucursal = Codigo_Sucursal;
-//        this.Nombre_Sucursal = Nombre_Sucursal;
-//        this.Clase_Documento = Clase_Documento;
-//        this.Numero_Documento = Numero_Documento;
-//        this.Ejercicio = Ejercicio;
-//        this.Referencia = Referencia;
-//        this.Fe_Contable = Fe_Contable;
-//        this.Fecha_Documento = Fecha_Documento;
-//        this.Fecha_Base = Fecha_Base;
-//        this.Descripcion_Cond_Pago = Descripcion_Cond_Pago;
-//        this.Origen_diferencias = Origen_diferencias;
-//        this.Indicador_Debe_Haber = Indicador_Debe_Haber;
-//        this.Referencia_Factura = Referencia_Factura;
-//        this.Ejercicio_Referencia = Ejercicio_Referencia;
-//        this.Fecha_Vencimiento = Fecha_Vencimiento;
-//        this.Condicion_Pago = Condicion_Pago;
-//        this.Saldo_0_0_días = Saldo_0_0_días;
-//        this.Saldo_1_15_días = Saldo_1_15_días;
-//        this.Saldo_16_21_días = Saldo_16_21_días;
-//        this.Saldo_22_30_días = Saldo_22_30_días;
-//        this.Saldo_31_60_días = Saldo_31_60_días;
-//        this.Saldo_61_90_días = Saldo_61_90_días;
-//        this.Saldo_91_120_días = Saldo_91_120_días;
-//        this.Saldo_121_180_días = Saldo_121_180_días;
-//        this.Saldo_mayor_180_días = Saldo_mayor_180_días;
-//        this.Saldo = Saldo;
-//        this.Ruta = Ruta;
-//        this.Clasificacion_Cliente = Clasificacion_Cliente;
-//        this.Codigo_Industria_1 = Codigo_Industria_1;
-//        this.Oficina_Ventas = Oficina_Ventas;
-//        this.Descripción_Of_Vtas = Descripción_Of_Vtas;
-//        this.Grupo_Vendedores = Grupo_Vendedores;
-//    }
+
 
     public String getSociedad() {
         return Sociedad;

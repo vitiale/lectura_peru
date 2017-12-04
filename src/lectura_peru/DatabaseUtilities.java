@@ -211,22 +211,22 @@ public class DatabaseUtilities {
                 prepareStatement.setString(9, partidas.getIndicador_CME());
                 prepareStatement.setString(10, partidas.getNum_Documento_Compensacion());
                 prepareStatement.setString(11, partidas.getFecha_Compens());
-                prepareStatement.setString(12, partidas.getNombre_Sucursal());
-                prepareStatement.setString(13, partidas.getClase_Documento());
-                prepareStatement.setString(14, partidas.getNumero_Documento());
-                prepareStatement.setString(15, partidas.getEjercicio());
-                prepareStatement.setString(16, partidas.getReferencia());
-                prepareStatement.setString(17, partidas.getFe_Contable());
-                prepareStatement.setString(18, partidas.getFecha_Documento());
-                prepareStatement.setString(19, partidas.getFecha_Base());
-                prepareStatement.setString(20, partidas.getDescripcion_Cond_Pago());
-                prepareStatement.setString(21, partidas.getOrigen_diferencias());
-                prepareStatement.setString(22, partidas.getIndicador_Debe_Haber());
-                prepareStatement.setString(23, partidas.getReferencia_Factura());
-                prepareStatement.setString(24, partidas.getEjercicio_Referencia());
-                prepareStatement.setString(25, partidas.getFecha_Vencimiento());
-                prepareStatement.setString(26, partidas.getCondicion_Pago());
-                prepareStatement.setString(27, partidas.getCodigo_Sucursal());
+                prepareStatement.setString(12, partidas.getCodigo_Sucursal());
+                prepareStatement.setString(13, partidas.getNombre_Sucursal());
+                prepareStatement.setString(14, partidas.getClase_Documento());
+                prepareStatement.setString(15, partidas.getNumero_Documento());
+                prepareStatement.setString(16, partidas.getEjercicio());
+                prepareStatement.setString(17, partidas.getReferencia());
+                prepareStatement.setString(18, partidas.getFe_Contable());
+                prepareStatement.setString(19, partidas.getFecha_Documento());
+                prepareStatement.setString(20, partidas.getFecha_Base());
+                prepareStatement.setString(21, partidas.getDescripcion_Cond_Pago());
+                prepareStatement.setString(22, partidas.getOrigen_diferencias());
+                prepareStatement.setString(23, partidas.getIndicador_Debe_Haber());
+                prepareStatement.setString(24, partidas.getReferencia_Factura());
+                prepareStatement.setString(25, partidas.getEjercicio_Referencia());
+                prepareStatement.setString(26, partidas.getFecha_Vencimiento());
+                prepareStatement.setString(27, partidas.getCondicion_Pago());
                 prepareStatement.setDouble(28, partidas.getSaldo_0_0_días());
                 prepareStatement.setDouble(29, partidas.getSaldo_1_15_días());
                 prepareStatement.setDouble(30, partidas.getSaldo_16_21_días());
@@ -289,7 +289,8 @@ public class DatabaseUtilities {
             System.out.println(sql + col + " FROM " + tableName + " ORDER BY Numero_Cliente, Referencia_Factura;");
             ResultSet rs = stmt.executeQuery(sql + col + " FROM " + tableName + " ORDER BY Numero_Cliente, Referencia_Factura;");
             while (rs.next()) {
-                lista.add(new Partidas_Abiertas(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
+                Partidas_Abiertas pa=new Partidas_Abiertas(col, tableName, tableName, col, tableName, tableName, tableName, col, tableName, tableName, col, col, url, tableName, tableName, col, tableName, col, tableName, tableName, col, tableName, tableName, tableName, col, tableName, col, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, url, tableName, col, tableName, col, tableName);
+                lista.add(pa = new Partidas_Abiertas(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
                         rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13),
                         rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),
                         rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27),
@@ -297,6 +298,7 @@ public class DatabaseUtilities {
                         rs.getDouble(35), rs.getDouble(36), rs.getDouble(37),rs.getString(38), rs.getString(39), rs.getString(40), rs.getString(41),
                         rs.getString(42), rs.getString(43)));
             }//System.out.println(lista.get(0).getClase_Documento());
+            System.out.println("pos 12 :" + lista.get(0).getCodigo_Sucursal());
 //            System.out.println("lista pos \n"+lista.get(0).getSociedad()+"\n"+lista.get(0).getNumero_Cliente()+"\n"+ lista.get(0).getNombre_Cliente()+"\n"+ 
 //                    lista.get(0).getNum_Ident_Fiscal()+"\n"+lista.get(0).getResponsable()+"\n"+lista.get(0).getTexto_Responsable()+"\n"+
 //                    lista.get(0).getCanal_Ventas()+"\n"+lista.get(0).getDescripcion_Canal()+"\n"+lista.get(0).getIndicador_CME()+"\n"+
