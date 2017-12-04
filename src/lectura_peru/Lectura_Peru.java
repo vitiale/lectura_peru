@@ -140,7 +140,7 @@ public class Lectura_Peru {
         }
         return res;
     }
-    
+    //actualmente en uso
     private  double convert_double(String cad){
         if(cad.indexOf(",")!=-1){
             cad=cad.replaceAll(",", "");
@@ -186,22 +186,22 @@ public class Lectura_Peru {
         columnas.put(8, "Indicador_CME");
         columnas.put(9, "Num_Documento_Compensacion");
         columnas.put(10, "Fecha_Compens");
-        columnas.put(11, "Nombre_Sucursal");
-        columnas.put(12, "Clase_Documento");
-        columnas.put(13, "Numero_Documento");
-        columnas.put(14, "Ejercicio");
-        columnas.put(15, "Referencia");
-        columnas.put(16, "Fe_Contable");
-        columnas.put(17, "Fecha_Documento");
-        columnas.put(18, "Fecha_Base");
-        columnas.put(19, "Descripcion_Cond_Pago");
-        columnas.put(20, "Origen_diferencias");
-        columnas.put(21, "Indicador_Debe_Haber");
-        columnas.put(22, "Referencia_Factura");
-        columnas.put(23, "Ejercicio_Referencia");
-        columnas.put(24, "Fecha_Vencimiento");
-        columnas.put(25, "Condicion_Pago");
-        columnas.put(26, "Codigo_Sucursal");
+        columnas.put(11, "Codigo_Sucursal");
+        columnas.put(12, "Nombre_Sucursal");
+        columnas.put(13, "Clase_Documento");
+        columnas.put(14, "Numero_Documento");
+        columnas.put(15, "Ejercicio");
+        columnas.put(16, "Referencia");
+        columnas.put(17, "Fe_Contable");
+        columnas.put(18, "Fecha_Documento");
+        columnas.put(19, "Fecha_Base");
+        columnas.put(20, "Descripcion_Cond_Pago");
+        columnas.put(21, "Origen_diferencias");
+        columnas.put(22, "Indicador_Debe_Haber");
+        columnas.put(23, "Referencia_Factura");
+        columnas.put(24, "Ejercicio_Referencia");
+        columnas.put(25, "Fecha_Vencimiento");
+        columnas.put(26, "Condicion_Pago");
         columnas.put(27, "Saldo_0_0_días");
         columnas.put(28, "Saldo_1_15_días");
         columnas.put(29, "Saldo_16_21_días");
@@ -233,8 +233,8 @@ public class Lectura_Peru {
          for(Partidas_Abiertas partida : list_pa1){
              Row row = hoja_actual.createRow(cont_row);
              Cell cell;
-             //System.out.println(partida.getSociedad());
-             for(int a = 0; a < 43; a++) {
+             System.out.println(partida.getReferencia_Factura());
+             for(int a = 0; a < 43; a++) {//no tengo que hacerlo dentro de un ciclo
                  switch(a){
                      case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
                      case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;
@@ -247,22 +247,22 @@ public class Lectura_Peru {
                      case 8: cell = row.createCell(8);  cell.setCellValue(partida.getIndicador_CME());break;
                      case 9: cell = row.createCell(9);  cell.setCellValue(partida.getNum_Documento_Compensacion());break;
                      case 10: cell = row.createCell(10);  cell.setCellValue(partida.getFecha_Compens());break;
-                     case 11: cell = row.createCell(11);  cell.setCellValue(partida.getNombre_Sucursal());break;
-                     case 12: cell = row.createCell(12);  cell.setCellValue(partida.getClase_Documento());break;
-                     case 13: cell = row.createCell(13);  cell.setCellValue(partida.getNumero_Documento());break;
-                     case 14: cell = row.createCell(14);  cell.setCellValue(partida.getEjercicio());break;
-                     case 15: cell = row.createCell(15);  cell.setCellValue(partida.getReferencia());break;
-                     case 16: cell = row.createCell(16);  cell.setCellValue(partida.getFe_Contable());break;
-                     case 17: cell = row.createCell(17);  cell.setCellValue(partida.getFecha_Documento());break;
-                     case 18: cell = row.createCell(18);  cell.setCellValue(partida.getFecha_Base());break;
-                     case 19: cell = row.createCell(19);  cell.setCellValue(partida.getDescripcion_Cond_Pago());break;
-                     case 20: cell = row.createCell(20);  cell.setCellValue(partida.getOrigen_diferencias());break;
-                     case 21: cell = row.createCell(21);  cell.setCellValue(partida.getIndicador_Debe_Haber());break;
-                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getReferencia_Factura());break;
-                     case 23: cell = row.createCell(23);  cell.setCellValue(partida.getEjercicio_Referencia());break;
-                     case 24: cell = row.createCell(24);  cell.setCellValue(partida.getFecha_Vencimiento());break;
-                     case 25: cell = row.createCell(25);  cell.setCellValue(partida.getCondicion_Pago());break;
-                     case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCodigo_Sucursal());break;
+                     case 11: cell = row.createCell(11);  cell.setCellValue(partida.getCodigo_Sucursal());break;
+                     case 12: cell = row.createCell(12);  cell.setCellValue(partida.getNombre_Sucursal());break;
+                     case 13: cell = row.createCell(13);  cell.setCellValue(partida.getClase_Documento());break;
+                     case 14: cell = row.createCell(14);  cell.setCellValue(partida.getNumero_Documento());break;
+                     case 15: cell = row.createCell(15);  cell.setCellValue(partida.getEjercicio());break;
+                     case 16: cell = row.createCell(16);  cell.setCellValue(partida.getReferencia());break;
+                     case 17: cell = row.createCell(17);  cell.setCellValue(partida.getFe_Contable());break;
+                     case 18: cell = row.createCell(18);  cell.setCellValue(partida.getFecha_Documento());break;
+                     case 19: cell = row.createCell(19);  cell.setCellValue(partida.getFecha_Base());break;
+                     case 20: cell = row.createCell(20);  cell.setCellValue(partida.getDescripcion_Cond_Pago());break;
+                     case 21: cell = row.createCell(21);  cell.setCellValue(partida.getOrigen_diferencias());break;
+                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getIndicador_Debe_Haber());break;
+                     case 23: cell = row.createCell(23);  cell.setCellValue(partida.getReferencia_Factura());break;
+                     case 24: cell = row.createCell(24);  cell.setCellValue(partida.getEjercicio_Referencia());break;
+                     case 25: cell = row.createCell(25);  cell.setCellValue(partida.getFecha_Vencimiento());break;
+                     case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCondicion_Pago());break;
                      case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días());break;
                      case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días());break;
                      case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días());break;

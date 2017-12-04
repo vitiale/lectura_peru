@@ -49,3 +49,15 @@ from  partidas_abiertas
 order by
 
 Numero_Cliente, Referencia_Factura
+
+
+//POR COMODIDAD
+
+select 
+
+Numero_Cliente,Referencia_Factura
+from  partidas_abiertas
+
+order by
+
+Numero_Cliente, Referencia_Factura
