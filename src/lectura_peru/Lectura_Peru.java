@@ -239,9 +239,9 @@ public class Lectura_Peru {
             int sum=0;
             ArrayList<Double>activos=new ArrayList<>();//acumular numeros a tener en en cuenta para las reglas
             ArrayList<Boolean>signos=new ArrayList<>();//signos de los numeros acumulados true para "+" y false para "-"
-            double max=partida.getSaldo_0_0_días();
-             double min=partida.getSaldo_0_0_días();
-             double abs=partida.getSaldo_0_0_días();
+            double max=0;
+             double min=0;
+             double abs=0;
              int place=44;
          for(int i=1; i<list_pa1.size(); i++){//
              Row row = hoja_actual.createRow(cont_row);
@@ -268,7 +268,7 @@ public class Lectura_Peru {
              double acumular[]={partida.getSaldo_0_0_días(), partida.getSaldo_1_15_días(), partida.getSaldo_16_21_días(), partida.getSaldo_22_30_días(), 
              partida.getSaldo_31_60_días(), partida.getSaldo_61_90_días(), partida.getSaldo_91_120_días(), partida.getSaldo_121_180_días(), 
              partida.getSaldo_mayor_180_días(), };
-             
+            if(partida.getNumero_Cliente().equals(list_pa1.get(i).getNumero_Cliente()) && partida.getReferencia_Factura().equals(list_pa1.get(i).getReferencia_Factura())){ 
                           
              for(int a=0; a<43; a++){
                      switch(a){
@@ -306,6 +306,8 @@ public class Lectura_Peru {
                                  activos.add(partida.getSaldo_0_0_días());
                                  sum += partida.getSaldo_0_0_días();
                                  place = 44;
+                                 if(abs<Math.abs(partida.getSaldo_0_0_días()))
+                                     abs=partida.getSaldo_0_0_días();
                                  if (partida.getSaldo_0_0_días() > 0){
                                      signos.add(true);
                                  }else{
@@ -321,6 +323,8 @@ public class Lectura_Peru {
                                  activos.add(partida.getSaldo_1_15_días());
                                  sum += partida.getSaldo_1_15_días();
                                  place = 45;
+                                 if(abs<partida.getSaldo_1_15_días())
+                                     abs=partida.getSaldo_1_15_días();
                                  if (partida.getSaldo_1_15_días() > 0){
                                      signos.add(true);
                                  }else{
@@ -335,7 +339,9 @@ public class Lectura_Peru {
                              if (partida.getSaldo_16_21_días() != 0) {
                                  activos.add(partida.getSaldo_16_21_días());
                                  sum += partida.getSaldo_16_21_días();
-                                 place = 46;
+                                 if(abs<partida.getSaldo_16_21_días())
+                                     abs=partida.getSaldo_16_21_días();
+                                 place = 46;                                 
                                  if (partida.getSaldo_16_21_días() > 0){
                                      signos.add(true);
                                  }else{
@@ -348,8 +354,10 @@ public class Lectura_Peru {
                              cell = row.createCell(30);
                              cell.setCellValue(partida.getSaldo_22_30_días());
                              if (partida.getSaldo_22_30_días() != 0) {
-                                 partida.getSaldo_22_30_días();
+                                 activos.add(partida.getSaldo_22_30_días());
                                  sum += partida.getSaldo_22_30_días();
+                                 if(abs<partida.getSaldo_22_30_días())
+                                     abs=partida.getSaldo_22_30_días();
                                  place = 47;
                                  if (partida.getSaldo_22_30_días() > 0){
                                      signos.add(true);
@@ -363,8 +371,10 @@ public class Lectura_Peru {
                              cell = row.createCell(31);
                              cell.setCellValue(partida.getSaldo_31_60_días());
                              if (partida.getSaldo_31_60_días() != 0) {
-                                 partida.getSaldo_31_60_días();
+                                 activos.add(partida.getSaldo_31_60_días());
                                  sum += partida.getSaldo_31_60_días();
+                                 if(abs<partida.getSaldo_31_60_días())
+                                     abs=partida.getSaldo_31_60_días();
                                  place = 48;
                                  if (partida.getSaldo_31_60_días() > 0){
                                      signos.add(true);
@@ -378,8 +388,10 @@ public class Lectura_Peru {
                              cell = row.createCell(32);
                              cell.setCellValue(partida.getSaldo_61_90_días());
                              if (partida.getSaldo_61_90_días() != 0) {
-                                 partida.getSaldo_61_90_días();
+                                 activos.add(partida.getSaldo_61_90_días());
                                  sum += partida.getSaldo_61_90_días();
+                                 if(abs<partida.getSaldo_61_90_días())
+                                     abs=partida.getSaldo_61_90_días();
                                  place = 49;
                                  if (partida.getSaldo_61_90_días() > 0){
                                      signos.add(true);
@@ -393,8 +405,10 @@ public class Lectura_Peru {
                              cell = row.createCell(33);
                              cell.setCellValue(partida.getSaldo_91_120_días());
                              if (partida.getSaldo_91_120_días() != 0) {
-                                 partida.getSaldo_91_120_días();
+                                 activos.add(partida.getSaldo_91_120_días());
                                  sum += partida.getSaldo_91_120_días();
+                                 if(abs<partida.getSaldo_91_120_días())
+                                     abs=partida.getSaldo_91_120_días();
                                  place = 50;
                                  if (partida.getSaldo_91_120_días() > 0){
                                      signos.add(true);
@@ -408,8 +422,10 @@ public class Lectura_Peru {
                              cell = row.createCell(34);
                              cell.setCellValue(partida.getSaldo_121_180_días());
                              if (partida.getSaldo_121_180_días() != 0) {
-                                 partida.getSaldo_121_180_días();
+                                 activos.add(partida.getSaldo_121_180_días());
                                  sum += partida.getSaldo_121_180_días();
+                                 if(abs<partida.getSaldo_121_180_días())
+                                     abs=partida.getSaldo_121_180_días();
                                  place = 51;
                                  if (partida.getSaldo_121_180_días() > 0){
                                      signos.add(true);
@@ -423,8 +439,10 @@ public class Lectura_Peru {
                              cell = row.createCell(35);
                              cell.setCellValue(partida.getSaldo_mayor_180_días());
                              if (partida.getSaldo_mayor_180_días() != 0) {
-                                 partida.getSaldo_mayor_180_días();
+                                 activos.add(partida.getSaldo_mayor_180_días());
                                  sum += partida.getSaldo_mayor_180_días();
+                                 if(abs<partida.getSaldo_mayor_180_días())
+                                     abs=partida.getSaldo_mayor_180_días();
                                  place = 52;
                                  if (partida.getSaldo_mayor_180_días() > 0){
                                      signos.add(true);
@@ -450,7 +468,7 @@ public class Lectura_Peru {
                  }
              
              //System.out.println(partida.getNumero_Cliente()+"  "+partida.getReferencia_Factura()+"      "+list_pa1.get(i).getNumero_Cliente()+"  "+list_pa1.get(i).getReferencia_Factura( ));
-             if(partida.getNumero_Cliente().equals(list_pa1.get(i).getNumero_Cliente()) && partida.getReferencia_Factura().equals(list_pa1.get(i).getReferencia_Factura())){
+             
                      cell = row.createCell(44);  cell.setCellValue(0.00);
                      cell = row.createCell(45);  cell.setCellValue(0.00);
                      cell = row.createCell(46);  cell.setCellValue(0.00);
@@ -466,6 +484,56 @@ public class Lectura_Peru {
              }else{
                  if(cont>0){
                      System.out.println("*_J_2");
+                     
+                     
+                   for(int a = 0; a < 43; a++) {//no tengo que hacerlo dentro de un ciclo
+                    switch(a){
+                     case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
+                     case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;
+                     case 2: cell = row.createCell(2);  cell.setCellValue(partida.getNombre_Cliente());break;
+                     case 3: cell = row.createCell(3);  cell.setCellValue(partida.getNum_Ident_Fiscal());break;
+                     case 4: cell = row.createCell(4);  cell.setCellValue(partida.getResponsable());break;
+                     case 5: cell = row.createCell(5);  cell.setCellValue(partida.getTexto_Responsable());break;
+                     case 6: cell = row.createCell(6);  cell.setCellValue(partida.getCanal_Ventas());break;
+                     case 7: cell = row.createCell(7);  cell.setCellValue(partida.getDescripcion_Canal());break;
+                     case 8: cell = row.createCell(8);  cell.setCellValue(partida.getIndicador_CME());break;
+                     case 9: cell = row.createCell(9);  cell.setCellValue(partida.getNum_Documento_Compensacion());break;
+                     case 10: cell = row.createCell(10);  cell.setCellValue(partida.getFecha_Compens());break;
+                     case 11: cell = row.createCell(11);  cell.setCellValue(partida.getCodigo_Sucursal());break;
+                     case 12: cell = row.createCell(12);  cell.setCellValue(partida.getNombre_Sucursal());break;
+                     case 13: cell = row.createCell(13);  cell.setCellValue(partida.getClase_Documento());break;
+                     case 14: cell = row.createCell(14);  cell.setCellValue(partida.getNumero_Documento());break;
+                     case 15: cell = row.createCell(15);  cell.setCellValue(partida.getEjercicio());break;
+                     case 16: cell = row.createCell(16);  cell.setCellValue(partida.getReferencia());break;
+                     case 17: cell = row.createCell(17);  cell.setCellValue(partida.getFe_Contable());break;
+                     case 18: cell = row.createCell(18);  cell.setCellValue(partida.getFecha_Documento());break;
+                     case 19: cell = row.createCell(19);  cell.setCellValue(partida.getFecha_Base());break;
+                     case 20: cell = row.createCell(20);  cell.setCellValue(partida.getDescripcion_Cond_Pago());break;
+                     case 21: cell = row.createCell(21);  cell.setCellValue(partida.getOrigen_diferencias());break;
+                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getIndicador_Debe_Haber());break;
+                     case 23: cell = row.createCell(23);  cell.setCellValue(partida.getReferencia_Factura());break;
+                     case 24: cell = row.createCell(24);  cell.setCellValue(partida.getEjercicio_Referencia());break;
+                     case 25: cell = row.createCell(25);  cell.setCellValue(partida.getFecha_Vencimiento());break;
+                     case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCondicion_Pago());break;
+                     case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días());break;
+                     case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días());break;
+                     case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días());break;
+                     case 30: cell = row.createCell(30);  cell.setCellValue(partida.getSaldo_22_30_días());break;
+                     case 31: cell = row.createCell(31);  cell.setCellValue(partida.getSaldo_31_60_días());break;
+                     case 32: cell = row.createCell(32);  cell.setCellValue(partida.getSaldo_61_90_días());break;
+                     case 33: cell = row.createCell(33);  cell.setCellValue(partida.getSaldo_91_120_días());break;
+                     case 34: cell = row.createCell(34);  cell.setCellValue(partida.getSaldo_121_180_días());break;
+                     case 35: cell = row.createCell(35);  cell.setCellValue(partida.getSaldo_mayor_180_días());break;
+                     case 36: cell = row.createCell(36);  cell.setCellValue(partida.getSaldo());break;
+                     case 37: cell = row.createCell(37);  cell.setCellValue(partida.getRuta());break;
+                     case 38: cell = row.createCell(38);  cell.setCellValue(partida.getClasificacion_Cliente());break;
+                     case 39: cell = row.createCell(39);  cell.setCellValue(partida.getCodigo_Industria_1());break;
+                     case 40: cell = row.createCell(40);  cell.setCellValue(partida.getOficina_Ventas());break;
+                     case 41: cell = row.createCell(41);  cell.setCellValue(partida.getDescripción_Of_Vtas());break;
+                     case 42: cell = row.createCell(42);  cell.setCellValue(partida.getGrupo_Vendedores());break;
+                 }
+                 
+             }                     
                      
                      if(sum==0){
                         cell = row.createCell(44);  cell.setCellValue(0.00);
@@ -494,13 +562,69 @@ public class Lectura_Peru {
                              Cell cell_aux=row_aux.createCell(place); cell_aux.setCellValue(activos.get(marca));
                          }
                          else if(signos.indexOf(true)==-1){
-                             
+                             int marca=activos.indexOf(abs);
+                             Row row_aux = hoja_actual.createRow(cont_row-(activos.size()-marca));
+                             //no se si hay que crear la celda de nuevo y hay que tener cuidado porque se esta sobreescribiendo una celda
+                             Cell cell_aux=row_aux.createCell(place); cell_aux.setCellValue(activos.get(marca));
                          }
                      }
-                     
+                     signos.clear();
+                     activos.clear();
+                     sum=0;
+                     abs=0;
                      cont=0;
                  }else{
                      System.out.println("Ç_I");
+                     
+                     for(int a = 0; a < 43; a++) {//no tengo que hacerlo dentro de un ciclo
+                    switch(a){
+                     case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
+                     case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;
+                     case 2: cell = row.createCell(2);  cell.setCellValue(partida.getNombre_Cliente());break;
+                     case 3: cell = row.createCell(3);  cell.setCellValue(partida.getNum_Ident_Fiscal());break;
+                     case 4: cell = row.createCell(4);  cell.setCellValue(partida.getResponsable());break;
+                     case 5: cell = row.createCell(5);  cell.setCellValue(partida.getTexto_Responsable());break;
+                     case 6: cell = row.createCell(6);  cell.setCellValue(partida.getCanal_Ventas());break;
+                     case 7: cell = row.createCell(7);  cell.setCellValue(partida.getDescripcion_Canal());break;
+                     case 8: cell = row.createCell(8);  cell.setCellValue(partida.getIndicador_CME());break;
+                     case 9: cell = row.createCell(9);  cell.setCellValue(partida.getNum_Documento_Compensacion());break;
+                     case 10: cell = row.createCell(10);  cell.setCellValue(partida.getFecha_Compens());break;
+                     case 11: cell = row.createCell(11);  cell.setCellValue(partida.getCodigo_Sucursal());break;
+                     case 12: cell = row.createCell(12);  cell.setCellValue(partida.getNombre_Sucursal());break;
+                     case 13: cell = row.createCell(13);  cell.setCellValue(partida.getClase_Documento());break;
+                     case 14: cell = row.createCell(14);  cell.setCellValue(partida.getNumero_Documento());break;
+                     case 15: cell = row.createCell(15);  cell.setCellValue(partida.getEjercicio());break;
+                     case 16: cell = row.createCell(16);  cell.setCellValue(partida.getReferencia());break;
+                     case 17: cell = row.createCell(17);  cell.setCellValue(partida.getFe_Contable());break;
+                     case 18: cell = row.createCell(18);  cell.setCellValue(partida.getFecha_Documento());break;
+                     case 19: cell = row.createCell(19);  cell.setCellValue(partida.getFecha_Base());break;
+                     case 20: cell = row.createCell(20);  cell.setCellValue(partida.getDescripcion_Cond_Pago());break;
+                     case 21: cell = row.createCell(21);  cell.setCellValue(partida.getOrigen_diferencias());break;
+                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getIndicador_Debe_Haber());break;
+                     case 23: cell = row.createCell(23);  cell.setCellValue(partida.getReferencia_Factura());break;
+                     case 24: cell = row.createCell(24);  cell.setCellValue(partida.getEjercicio_Referencia());break;
+                     case 25: cell = row.createCell(25);  cell.setCellValue(partida.getFecha_Vencimiento());break;
+                     case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCondicion_Pago());break;
+                     case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días());break;
+                     case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días());break;
+                     case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días());break;
+                     case 30: cell = row.createCell(30);  cell.setCellValue(partida.getSaldo_22_30_días());break;
+                     case 31: cell = row.createCell(31);  cell.setCellValue(partida.getSaldo_31_60_días());break;
+                     case 32: cell = row.createCell(32);  cell.setCellValue(partida.getSaldo_61_90_días());break;
+                     case 33: cell = row.createCell(33);  cell.setCellValue(partida.getSaldo_91_120_días());break;
+                     case 34: cell = row.createCell(34);  cell.setCellValue(partida.getSaldo_121_180_días());break;
+                     case 35: cell = row.createCell(35);  cell.setCellValue(partida.getSaldo_mayor_180_días());break;
+                     case 36: cell = row.createCell(36);  cell.setCellValue(partida.getSaldo());break;
+                     case 37: cell = row.createCell(37);  cell.setCellValue(partida.getRuta());break;
+                     case 38: cell = row.createCell(38);  cell.setCellValue(partida.getClasificacion_Cliente());break;
+                     case 39: cell = row.createCell(39);  cell.setCellValue(partida.getCodigo_Industria_1());break;
+                     case 40: cell = row.createCell(40);  cell.setCellValue(partida.getOficina_Ventas());break;
+                     case 41: cell = row.createCell(41);  cell.setCellValue(partida.getDescripción_Of_Vtas());break;
+                     case 42: cell = row.createCell(42);  cell.setCellValue(partida.getGrupo_Vendedores());break;
+                 }
+                 
+             }
+                     
                  }
              }
              //PARA TRATAR LA ULTIMA FILA
@@ -577,7 +701,7 @@ public class Lectura_Peru {
         libro.write(fileOut);
         fileOut.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
          
     }
