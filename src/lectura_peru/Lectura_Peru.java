@@ -246,28 +246,9 @@ public class Lectura_Peru {
          for(int i=1; i<list_pa1.size(); i++){//
              Row row = hoja_actual.createRow(cont_row);
              Cell cell;
-             
-             double sal_0_0=0;
-             double sal_1_15=0;
-             double sal_16_21=0;
-             double sal_22_30=0;
-             double sal_31_60=0;
-             double sal_61_90=0;
-             double sal_91_120=0;
-             double sal_121_180=0;
-             double sal_may_180=0;
              double saldo=0;
-             
              Partidas_Abiertas partida=list_pa1.get(j);
-             
-             
-             
-             
-             
-             
-//             double acumular[]={partida.getSaldo_0_0_días(), partida.getSaldo_1_15_días(), partida.getSaldo_16_21_días(), partida.getSaldo_22_30_días(), 
-//             partida.getSaldo_31_60_días(), partida.getSaldo_61_90_días(), partida.getSaldo_91_120_días(), partida.getSaldo_121_180_días(), 
-//             partida.getSaldo_mayor_180_días(), };
+
              
             if(partida.getNumero_Cliente().equals(list_pa1.get(i).getNumero_Cliente()) && partida.getReferencia_Factura().equals(list_pa1.get(i).getReferencia_Factura())){ 
                           
@@ -479,6 +460,51 @@ public class Lectura_Peru {
                      cell = row.createCell(50);  cell.setCellValue(0.00);
                      cell = row.createCell(51);  cell.setCellValue(0.00);
                      cell = row.createCell(52);  cell.setCellValue(0.00);
+                     
+                     //Provisión
+                     if(partida.getSaldo_31_60_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(partida.getSaldo_31_60_días()*10/100);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_31_60_días()*10/100);
+                     }else if(partida.getSaldo_61_90_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(partida.getSaldo_61_90_días()*20/100);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_61_90_días()*20/100);
+                     }else if(partida.getSaldo_91_120_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(partida.getSaldo_91_120_días()*50/100);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_91_120_días()*50/100);
+                     }else if(partida.getSaldo_121_180_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(partida.getSaldo_121_180_días()*50/100);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_121_180_días()*50/100);
+                     }else if(partida.getSaldo_mayor_180_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(partida.getSaldo_mayor_180_días());
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_mayor_180_días());
+                     }else{
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(0.00);
+                     }
                  
                  System.out.println("*_J");
                  cont++;
@@ -721,6 +747,50 @@ public class Lectura_Peru {
                              cell_aux.setCellValue(sum);
                          }
                      }
+                     //Provisión
+                     if(partida.getSaldo_31_60_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(partida.getSaldo_31_60_días()*10/100);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_31_60_días()*10/100);
+                     }else if(partida.getSaldo_61_90_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(partida.getSaldo_61_90_días()*20/100);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_61_90_días()*20/100);
+                     }else if(partida.getSaldo_91_120_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(partida.getSaldo_91_120_días()*50/100);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_91_120_días()*50/100);
+                     }else if(partida.getSaldo_121_180_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(partida.getSaldo_121_180_días()*50/100);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_121_180_días()*50/100);
+                     }else if(partida.getSaldo_mayor_180_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(partida.getSaldo_mayor_180_días());
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_mayor_180_días());
+                     }else{
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(0.00);
+                     }
                      signos.clear();
                      activos.clear();
                      sum=0;
@@ -787,6 +857,49 @@ public class Lectura_Peru {
                  }
                  
              }
+                     if(partida.getSaldo_31_60_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(partida.getSaldo_31_60_días()*10/100);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_31_60_días()*10/100);
+                     }else if(partida.getSaldo_61_90_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(partida.getSaldo_61_90_días()*20/100);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_61_90_días()*20/100);
+                     }else if(partida.getSaldo_91_120_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(partida.getSaldo_91_120_días()*50/100);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_91_120_días()*50/100);
+                     }else if(partida.getSaldo_121_180_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(partida.getSaldo_121_180_días()*50/100);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_121_180_días()*50/100);
+                     }else if(partida.getSaldo_mayor_180_días()>0){
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(partida.getSaldo_mayor_180_días());
+                         cell = row.createCell(59);  cell.setCellValue(partida.getSaldo_mayor_180_días());
+                     }else{
+                         cell = row.createCell(54);  cell.setCellValue(0.00);
+                         cell = row.createCell(55);  cell.setCellValue(0.00);
+                         cell = row.createCell(56);  cell.setCellValue(0.00);
+                         cell = row.createCell(57);  cell.setCellValue(0.00);
+                         cell = row.createCell(58);  cell.setCellValue(0.00);
+                         cell = row.createCell(59);  cell.setCellValue(0.00);
+                     }
                      
                  }
              }
