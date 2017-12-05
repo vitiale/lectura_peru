@@ -224,8 +224,8 @@ public class Lectura_Peru {
         return columnas;
     }
     
-    public void escribir_hoja_calc(ArrayList<Partidas_Abiertas> list_pa1) throws FileNotFoundException, IOException, InvalidFormatException{
-//    try {
+    public void escribir_hoja_calc(ArrayList<Partidas_Abiertas> list_pa1) {
+    try {
             File file = new File(output_file);
         FileInputStream in = new FileInputStream(file);
          Workbook libro = WorkbookFactory.create(in);
@@ -790,8 +790,9 @@ public class Lectura_Peru {
                      
                  }
              }
-             //PARA TRATAR LA ULTIMA FILA
+             //PARA TRATAR LA ULTIMA FILA Revisar****
              if(i==list_pa1.size()-1){
+                 Partidas_Abiertas last_row=list_pa1.get(i);
                  if(cont>0){
                      System.out.println("*_I_FINAL ");
                  }else{
@@ -802,84 +803,30 @@ public class Lectura_Peru {
              cont_row++;
          }
          
-//         for(Partidas_Abiertas partida : list_pa1){
-//             Row row = hoja_actual.createRow(cont_row);
-//             Cell cell;
-//             System.out.println(partida.getReferencia_Factura());
-//             for(int a = 0; a < 43; a++) {//no tengo que hacerlo dentro de un ciclo
-//                 switch(a){
-//                     case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
-//                     case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;
-//                     case 2: cell = row.createCell(2);  cell.setCellValue(partida.getNombre_Cliente());break;
-//                     case 3: cell = row.createCell(3);  cell.setCellValue(partida.getNum_Ident_Fiscal());break;
-//                     case 4: cell = row.createCell(4);  cell.setCellValue(partida.getResponsable());break;
-//                     case 5: cell = row.createCell(5);  cell.setCellValue(partida.getTexto_Responsable());break;
-//                     case 6: cell = row.createCell(6);  cell.setCellValue(partida.getCanal_Ventas());break;
-//                     case 7: cell = row.createCell(7);  cell.setCellValue(partida.getDescripcion_Canal());break;
-//                     case 8: cell = row.createCell(8);  cell.setCellValue(partida.getIndicador_CME());break;
-//                     case 9: cell = row.createCell(9);  cell.setCellValue(partida.getNum_Documento_Compensacion());break;
-//                     case 10: cell = row.createCell(10);  cell.setCellValue(partida.getFecha_Compens());break;
-//                     case 11: cell = row.createCell(11);  cell.setCellValue(partida.getCodigo_Sucursal());break;
-//                     case 12: cell = row.createCell(12);  cell.setCellValue(partida.getNombre_Sucursal());break;
-//                     case 13: cell = row.createCell(13);  cell.setCellValue(partida.getClase_Documento());break;
-//                     case 14: cell = row.createCell(14);  cell.setCellValue(partida.getNumero_Documento());break;
-//                     case 15: cell = row.createCell(15);  cell.setCellValue(partida.getEjercicio());break;
-//                     case 16: cell = row.createCell(16);  cell.setCellValue(partida.getReferencia());break;
-//                     case 17: cell = row.createCell(17);  cell.setCellValue(partida.getFe_Contable());break;
-//                     case 18: cell = row.createCell(18);  cell.setCellValue(partida.getFecha_Documento());break;
-//                     case 19: cell = row.createCell(19);  cell.setCellValue(partida.getFecha_Base());break;
-//                     case 20: cell = row.createCell(20);  cell.setCellValue(partida.getDescripcion_Cond_Pago());break;
-//                     case 21: cell = row.createCell(21);  cell.setCellValue(partida.getOrigen_diferencias());break;
-//                     case 22: cell = row.createCell(22);  cell.setCellValue(partida.getIndicador_Debe_Haber());break;
-//                     case 23: cell = row.createCell(23);  cell.setCellValue(partida.getReferencia_Factura());break;
-//                     case 24: cell = row.createCell(24);  cell.setCellValue(partida.getEjercicio_Referencia());break;
-//                     case 25: cell = row.createCell(25);  cell.setCellValue(partida.getFecha_Vencimiento());break;
-//                     case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCondicion_Pago());break;
-//                     case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días());break;
-//                     case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días());break;
-//                     case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días());break;
-//                     case 30: cell = row.createCell(30);  cell.setCellValue(partida.getSaldo_22_30_días());break;
-//                     case 31: cell = row.createCell(31);  cell.setCellValue(partida.getSaldo_31_60_días());break;
-//                     case 32: cell = row.createCell(32);  cell.setCellValue(partida.getSaldo_61_90_días());break;
-//                     case 33: cell = row.createCell(33);  cell.setCellValue(partida.getSaldo_91_120_días());break;
-//                     case 34: cell = row.createCell(34);  cell.setCellValue(partida.getSaldo_121_180_días());break;
-//                     case 35: cell = row.createCell(35);  cell.setCellValue(partida.getSaldo_mayor_180_días());break;
-//                     case 36: cell = row.createCell(36);  cell.setCellValue(partida.getSaldo());break;
-//                     case 37: cell = row.createCell(37);  cell.setCellValue(partida.getRuta());break;
-//                     case 38: cell = row.createCell(38);  cell.setCellValue(partida.getClasificacion_Cliente());break;
-//                     case 39: cell = row.createCell(39);  cell.setCellValue(partida.getCodigo_Industria_1());break;
-//                     case 40: cell = row.createCell(40);  cell.setCellValue(partida.getOficina_Ventas());break;
-//                     case 41: cell = row.createCell(41);  cell.setCellValue(partida.getDescripción_Of_Vtas());break;
-//                     case 42: cell = row.createCell(42);  cell.setCellValue(partida.getGrupo_Vendedores());break;
-//                 }
-//                 
-//             }
-//             cont_row++;
-//         }
-//         Row row = hoja_actual.createRow(9);
-//         Cell cell = row.createCell(0);
-         
 //        cell.setCellValue("hola");
         FileOutputStream fileOut = new FileOutputStream(output_file);
         libro.write(fileOut);
         fileOut.close();
-//        } catch (Exception e) {
-//            System.err.println(e.getMessage());
-//        }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
          
     }
     
-    private void poblar_excel() throws SQLException, IOException, FileNotFoundException, InvalidFormatException{
-        ArrayList<Partidas_Abiertas> list_pa1=db.sin_duplicar(url, tb_name, columnas);
-        
+    private void poblar_excel(){
+        try {            
+        ArrayList<Partidas_Abiertas> list_pa1=db.sin_duplicar(url, tb_name, columnas);        
         escribir_hoja_calc(list_pa1);
         //System.out.println(list_pa1.get(0).getNumero_Cliente());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, IOException, FileNotFoundException, InvalidFormatException {
+    public static void main(String[] args) throws SQLException, IOException {
         // TODO code application logic here
         Lectura_Peru per=new Lectura_Peru();
         per.lectura_fichero();
