@@ -1,4 +1,0 @@
-abcd
-bcde
-cdef
-defg
