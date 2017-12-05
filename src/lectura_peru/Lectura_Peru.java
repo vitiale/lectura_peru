@@ -224,8 +224,8 @@ public class Lectura_Peru {
         return columnas;
     }
     
-    public void escribir_hoja_calc(ArrayList<Partidas_Abiertas> list_pa1) throws FileNotFoundException, IOException{
-    try {
+    public void escribir_hoja_calc(ArrayList<Partidas_Abiertas> list_pa1) throws FileNotFoundException, IOException, InvalidFormatException{
+//    try {
             File file = new File(output_file);
         FileInputStream in = new FileInputStream(file);
          Workbook libro = WorkbookFactory.create(in);
@@ -265,9 +265,10 @@ public class Lectura_Peru {
              
              
              
-             double acumular[]={partida.getSaldo_0_0_días(), partida.getSaldo_1_15_días(), partida.getSaldo_16_21_días(), partida.getSaldo_22_30_días(), 
-             partida.getSaldo_31_60_días(), partida.getSaldo_61_90_días(), partida.getSaldo_91_120_días(), partida.getSaldo_121_180_días(), 
-             partida.getSaldo_mayor_180_días(), };
+//             double acumular[]={partida.getSaldo_0_0_días(), partida.getSaldo_1_15_días(), partida.getSaldo_16_21_días(), partida.getSaldo_22_30_días(), 
+//             partida.getSaldo_31_60_días(), partida.getSaldo_61_90_días(), partida.getSaldo_91_120_días(), partida.getSaldo_121_180_días(), 
+//             partida.getSaldo_mayor_180_días(), };
+             
             if(partida.getNumero_Cliente().equals(list_pa1.get(i).getNumero_Cliente()) && partida.getReferencia_Factura().equals(list_pa1.get(i).getReferencia_Factura())){ 
                           
              for(int a=0; a<43; a++){
@@ -515,22 +516,171 @@ public class Lectura_Peru {
                      case 24: cell = row.createCell(24);  cell.setCellValue(partida.getEjercicio_Referencia());break;
                      case 25: cell = row.createCell(25);  cell.setCellValue(partida.getFecha_Vencimiento());break;
                      case 26: cell = row.createCell(26);  cell.setCellValue(partida.getCondicion_Pago());break;
-                     case 27: cell = row.createCell(27);  cell.setCellValue(partida.getSaldo_0_0_días());break;
-                     case 28: cell = row.createCell(28);  cell.setCellValue(partida.getSaldo_1_15_días());break;
-                     case 29: cell = row.createCell(29);  cell.setCellValue(partida.getSaldo_16_21_días());break;
-                     case 30: cell = row.createCell(30);  cell.setCellValue(partida.getSaldo_22_30_días());break;
-                     case 31: cell = row.createCell(31);  cell.setCellValue(partida.getSaldo_31_60_días());break;
-                     case 32: cell = row.createCell(32);  cell.setCellValue(partida.getSaldo_61_90_días());break;
-                     case 33: cell = row.createCell(33);  cell.setCellValue(partida.getSaldo_91_120_días());break;
-                     case 34: cell = row.createCell(34);  cell.setCellValue(partida.getSaldo_121_180_días());break;
-                     case 35: cell = row.createCell(35);  cell.setCellValue(partida.getSaldo_mayor_180_días());break;
-                     case 36: cell = row.createCell(36);  cell.setCellValue(partida.getSaldo());break;
+                         case 27:
+                             cell = row.createCell(27);
+                             cell.setCellValue(partida.getSaldo_0_0_días());
+                             if (partida.getSaldo_0_0_días() != 0) {
+                                 activos.add(partida.getSaldo_0_0_días());
+                                 sum += partida.getSaldo_0_0_días();
+                                 place = 44;
+                                 if(abs<Math.abs(partida.getSaldo_0_0_días()))
+                                     abs=partida.getSaldo_0_0_días();
+                                 if (partida.getSaldo_0_0_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 28:
+                             cell = row.createCell(28);
+                             cell.setCellValue(partida.getSaldo_1_15_días());
+                             if (partida.getSaldo_1_15_días() != 0) {
+                                 activos.add(partida.getSaldo_1_15_días());
+                                 sum += partida.getSaldo_1_15_días();
+                                 place = 45;
+                                 if(abs<partida.getSaldo_1_15_días())
+                                     abs=partida.getSaldo_1_15_días();
+                                 if (partida.getSaldo_1_15_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 29:
+                             cell = row.createCell(29);
+                             cell.setCellValue(partida.getSaldo_16_21_días());
+                             if (partida.getSaldo_16_21_días() != 0) {
+                                 activos.add(partida.getSaldo_16_21_días());
+                                 sum += partida.getSaldo_16_21_días();
+                                 if(abs<partida.getSaldo_16_21_días())
+                                     abs=partida.getSaldo_16_21_días();
+                                 place = 46;                                 
+                                 if (partida.getSaldo_16_21_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 30:
+                             cell = row.createCell(30);
+                             cell.setCellValue(partida.getSaldo_22_30_días());
+                             if (partida.getSaldo_22_30_días() != 0) {
+                                 activos.add(partida.getSaldo_22_30_días());
+                                 sum += partida.getSaldo_22_30_días();
+                                 if(abs<partida.getSaldo_22_30_días())
+                                     abs=partida.getSaldo_22_30_días();
+                                 place = 47;
+                                 if (partida.getSaldo_22_30_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 31:
+                             cell = row.createCell(31);
+                             cell.setCellValue(partida.getSaldo_31_60_días());
+                             if (partida.getSaldo_31_60_días() != 0) {
+                                 activos.add(partida.getSaldo_31_60_días());
+                                 sum += partida.getSaldo_31_60_días();
+                                 if(abs<partida.getSaldo_31_60_días())
+                                     abs=partida.getSaldo_31_60_días();
+                                 place = 48;
+                                 if (partida.getSaldo_31_60_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 32:
+                             cell = row.createCell(32);
+                             cell.setCellValue(partida.getSaldo_61_90_días());
+                             if (partida.getSaldo_61_90_días() != 0) {
+                                 activos.add(partida.getSaldo_61_90_días());
+                                 sum += partida.getSaldo_61_90_días();
+                                 if(abs<partida.getSaldo_61_90_días())
+                                     abs=partida.getSaldo_61_90_días();
+                                 place = 49;
+                                 if (partida.getSaldo_61_90_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 33:
+                             cell = row.createCell(33);
+                             cell.setCellValue(partida.getSaldo_91_120_días());
+                             if (partida.getSaldo_91_120_días() != 0) {
+                                 activos.add(partida.getSaldo_91_120_días());
+                                 sum += partida.getSaldo_91_120_días();
+                                 if(abs<partida.getSaldo_91_120_días())
+                                     abs=partida.getSaldo_91_120_días();
+                                 place = 50;
+                                 if (partida.getSaldo_91_120_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 34:
+                             cell = row.createCell(34);
+                             cell.setCellValue(partida.getSaldo_121_180_días());
+                             if (partida.getSaldo_121_180_días() != 0) {
+                                 activos.add(partida.getSaldo_121_180_días());
+                                 sum += partida.getSaldo_121_180_días();
+                                 if(abs<partida.getSaldo_121_180_días())
+                                     abs=partida.getSaldo_121_180_días();
+                                 place = 51;
+                                 if (partida.getSaldo_121_180_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 35:
+                             cell = row.createCell(35);
+                             cell.setCellValue(partida.getSaldo_mayor_180_días());
+                             if (partida.getSaldo_mayor_180_días() != 0) {
+                                 activos.add(partida.getSaldo_mayor_180_días());
+                                 sum += partida.getSaldo_mayor_180_días();
+                                 if(abs<partida.getSaldo_mayor_180_días())
+                                     abs=partida.getSaldo_mayor_180_días();
+                                 place = 52;
+                                 if (partida.getSaldo_mayor_180_días() > 0){
+                                     signos.add(true);
+                                 }else{
+                                     signos.add(false);
+                                 }
+                             }
+                             ;
+                             break;
+                         case 36:
+                             cell = row.createCell(36);
+                             cell.setCellValue(partida.getSaldo());
+                             saldo = partida.getSaldo();
+                             break;
                      case 37: cell = row.createCell(37);  cell.setCellValue(partida.getRuta());break;
                      case 38: cell = row.createCell(38);  cell.setCellValue(partida.getClasificacion_Cliente());break;
                      case 39: cell = row.createCell(39);  cell.setCellValue(partida.getCodigo_Industria_1());break;
                      case 40: cell = row.createCell(40);  cell.setCellValue(partida.getOficina_Ventas());break;
                      case 41: cell = row.createCell(41);  cell.setCellValue(partida.getDescripción_Of_Vtas());break;
                      case 42: cell = row.createCell(42);  cell.setCellValue(partida.getGrupo_Vendedores());break;
+                                      
                  }
                  
              }                     
@@ -557,15 +707,23 @@ public class Lectura_Peru {
                              cell = row.createCell(51);  cell.setCellValue(0.00);
                              cell = row.createCell(52);  cell.setCellValue(0.00);
                              int marca=signos.indexOf(true);
-                             Row row_aux = hoja_actual.createRow(cont_row-(signos.size()-marca));
-                             //no se si hay que crear la celda de nuevo y hay que tener cuidado porque se esta sobreescribiendo una celda
-                             Cell cell_aux=row_aux.createCell(place); cell_aux.setCellValue(activos.get(marca));
+                             Row row_aux = hoja_actual.getRow(cont_row-(signos.size()-marca));
+                             //no se si hay que crear la celda de nuevo y hay que tener cuidado porque se esta sobreescribiendo una celda                             
+                             Cell cell_aux=row_aux.getCell(place); 
+                             System.out.println("activos long donde el error "+activos.size());
+                             System.out.println("signos long donde el error "+signos.size());
+                             cell_aux.setCellValue(activos.get(marca));
                          }
                          else if(signos.indexOf(true)==-1){
+                             System.out.println("long signos "+signos.size());
+                             for(boolean valor:signos){
+                                 System.out.println("valores de signo "+valor);
+                             }
                              int marca=activos.indexOf(abs);
-                             Row row_aux = hoja_actual.createRow(cont_row-(activos.size()-marca));
+                             Row row_aux = hoja_actual.getRow(cont_row-(activos.size()-marca));
                              //no se si hay que crear la celda de nuevo y hay que tener cuidado porque se esta sobreescribiendo una celda
-                             Cell cell_aux=row_aux.createCell(place); cell_aux.setCellValue(activos.get(marca));
+                             System.out.println("momento del fallo: "+cont_row);
+                             Cell cell_aux=row_aux.getCell(place); cell_aux.setCellValue(activos.get(marca));
                          }
                      }
                      signos.clear();
@@ -576,7 +734,7 @@ public class Lectura_Peru {
                  }else{
                      System.out.println("Ç_I");
                      
-                     for(int a = 0; a < 43; a++) {//no tengo que hacerlo dentro de un ciclo
+                     for(int a = 0; a < 53; a++) {//no tengo que hacerlo dentro de un ciclo
                     switch(a){
                      case 0: cell = row.createCell(0);  cell.setCellValue(partida.getSociedad());break;
                      case 1: cell = row.createCell(1);  cell.setCellValue(partida.getNumero_Cliente());break;
@@ -621,6 +779,16 @@ public class Lectura_Peru {
                      case 40: cell = row.createCell(40);  cell.setCellValue(partida.getOficina_Ventas());break;
                      case 41: cell = row.createCell(41);  cell.setCellValue(partida.getDescripción_Of_Vtas());break;
                      case 42: cell = row.createCell(42);  cell.setCellValue(partida.getGrupo_Vendedores());break;
+                     //en la 43 no se hace nada
+                     case 44: cell = row.createCell(44);  cell.setCellValue(partida.getSaldo_0_0_días());break;
+                     case 45: cell = row.createCell(45);  cell.setCellValue(partida.getSaldo_1_15_días());break;
+                     case 46: cell = row.createCell(46);  cell.setCellValue(partida.getSaldo_16_21_días());break;
+                     case 47: cell = row.createCell(47);  cell.setCellValue(partida.getSaldo_22_30_días());break;
+                     case 48: cell = row.createCell(48);  cell.setCellValue(partida.getSaldo_31_60_días());break;
+                     case 49: cell = row.createCell(49);  cell.setCellValue(partida.getSaldo_61_90_días());break;
+                     case 50: cell = row.createCell(50);  cell.setCellValue(partida.getSaldo_91_120_días());break;
+                     case 51: cell = row.createCell(51);  cell.setCellValue(partida.getSaldo_121_180_días());break;
+                     case 52: cell = row.createCell(52);  cell.setCellValue(partida.getSaldo_mayor_180_días());break;
                  }
                  
              }
@@ -700,13 +868,13 @@ public class Lectura_Peru {
         FileOutputStream fileOut = new FileOutputStream(output_file);
         libro.write(fileOut);
         fileOut.close();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
          
     }
     
-    private void poblar_excel() throws SQLException, IOException{
+    private void poblar_excel() throws SQLException, IOException, FileNotFoundException, InvalidFormatException{
         ArrayList<Partidas_Abiertas> list_pa1=db.sin_duplicar(url, tb_name, columnas);
         
         escribir_hoja_calc(list_pa1);
@@ -716,7 +884,7 @@ public class Lectura_Peru {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws SQLException, IOException, FileNotFoundException, InvalidFormatException {
         // TODO code application logic here
         Lectura_Peru per=new Lectura_Peru();
         per.lectura_fichero();
