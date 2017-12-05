@@ -236,7 +236,7 @@ public class Lectura_Peru {
             
             int j=0;
             int cont=0;
-            int sum=0;
+            double sum=0;
             ArrayList<Double>activos=new ArrayList<>();//acumular numeros a tener en en cuenta para las reglas
             ArrayList<Boolean>signos=new ArrayList<>();//signos de los numeros acumulados true para "+" y false para "-"
             double max=0;
@@ -707,23 +707,18 @@ public class Lectura_Peru {
                              cell = row.createCell(51);  cell.setCellValue(0.00);
                              cell = row.createCell(52);  cell.setCellValue(0.00);
                              int marca=signos.indexOf(true);
-                             Row row_aux = hoja_actual.getRow(cont_row-(signos.size()-marca));
-                             //no se si hay que crear la celda de nuevo y hay que tener cuidado porque se esta sobreescribiendo una celda                             
+                             Row row_aux = hoja_actual.getRow(cont_row+1-(signos.size()-marca));                           
                              Cell cell_aux=row_aux.getCell(place); 
-                             System.out.println("activos long donde el error "+activos.size());
-                             System.out.println("signos long donde el error "+signos.size());
-                             cell_aux.setCellValue(activos.get(marca));
+                             //cell_aux.setCellValue(activos.get(marca));
+                             cell_aux.setCellValue(sum);
                          }
                          else if(signos.indexOf(true)==-1){
-                             System.out.println("long signos "+signos.size());
-                             for(boolean valor:signos){
-                                 System.out.println("valores de signo "+valor);
-                             }
                              int marca=activos.indexOf(abs);
-                             Row row_aux = hoja_actual.getRow(cont_row-(activos.size()-marca));
-                             //no se si hay que crear la celda de nuevo y hay que tener cuidado porque se esta sobreescribiendo una celda
+                             Row row_aux = hoja_actual.getRow(cont_row+1-(activos.size()-marca));
                              System.out.println("momento del fallo: "+cont_row);
-                             Cell cell_aux=row_aux.getCell(place); cell_aux.setCellValue(activos.get(marca));
+                             Cell cell_aux=row_aux.getCell(place); 
+                             //cell_aux.setCellValue(activos.get(marca));
+                             cell_aux.setCellValue(sum);
                          }
                      }
                      signos.clear();
